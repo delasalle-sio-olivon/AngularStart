@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Main }  from './app.main';
 
 @Component({
     selector: 'my-app',
