@@ -1,10 +1,10 @@
 /* tslint:disable:no-unused-variable */
-import { AppComponent } from './app.component';
+import { AppComponent } from '../../component/app.component';
 
 import { TestBed }      from '@angular/core/testing';
 
 import { By }           from '@angular/platform-browser';
-
+/*
 ////////  SPECS  /////////////
 
 /// Delete this
@@ -34,4 +34,4 @@ describe('AppComponent with TCB', function () {
 
     expect(h1.innerText).toMatch(/angular app/i, '<h1> should say something about "Angular App"');
   });
-});
+});*/

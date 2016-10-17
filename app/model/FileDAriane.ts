@@ -3,7 +3,7 @@
  */
 export class FileDAriane {
     
-    position : String[];
+    private position : String[];
     
     constructor() {
         
