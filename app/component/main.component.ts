@@ -25,7 +25,14 @@ export class MainComponent implements OnInit {
     categories : Categorie[];
     information : Information[];
 
+    constructor(){
+        this.fileDAriane = new FileDAriane();
+        this.recherche = new Recherche();
+        this.categories = new Array();
+        this.information = new Array();
+    }
+
     ngOnInit() {
-    
+        this.categories.push(new Categorie("CatTest", "Catégorie de test", "Catégorie de test, ça permet de se rendre compte des choses qui marchent et qui marchent pas. C'est Sympa!"));
     }
 }
