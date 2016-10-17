@@ -1,7 +1,7 @@
 /**
  * Import angular
  */
-import { Component } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 
 /**
  * Import model
