@@ -19,7 +19,7 @@ describe('Model Categorie', () => {
         expect(categorie.idDroite).toBe(-1);
     });
 
-    it('Constructeur', () => {
+    it('Constructeur (Full)', () => {
 
         categorie = new Categorie("CatTest", "Catégorie de test", "Catégorie de test, ça permet de se rendre compte des choses qui marchent et qui marchent pas. C'est Sympa!", 1,2,3);
 
