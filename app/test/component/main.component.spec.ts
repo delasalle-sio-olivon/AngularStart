@@ -3,7 +3,7 @@ import { MainComponent } from '../../component/main.component';
 import { TestBed }      from '@angular/core/testing';
 import { By }           from '@angular/platform-browser';
  
-describe('MainComponent Test', () => {
+describe('Component MainComponent', () => {
     //let list:MyList;
  
     beforeEach(() => {
