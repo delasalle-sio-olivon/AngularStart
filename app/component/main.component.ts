@@ -20,18 +20,28 @@ import { Information } from '../model/Information';
 })
 export class MainComponent implements OnInit { 
 
+    /**
+     * Attribut
+     */
     fileDAriane : FileDAriane;
     recherche : Recherche;
+    categorieSelected : Categorie | boolean;
     categories : Categorie[];
-    information : Information[];
-
+    informations : Information[];
+    nbCol : number;
+    col : number[];
+    /**
+     * Constructeur
+     */
     constructor(){
         this.fileDAriane = new FileDAriane();
         this.recherche = new Recherche();
         this.categories = new Array();
-        this.information = new Array();
+        this.informations = new Array();
     }
-
+    /**
+     * Appelé après le Constructeur
+     */
     ngOnInit() {
         this.categories.push(new Categorie("CatTest1", "Catégorie de test", "Catégorie de test1, ça permet de se rendre compte des choses qui marchent et qui marchent pas. C'est Sympa!"));
         this.categories.push(new Categorie("CatTest2", "Catégorie de test2", "Catégorie de test2, ça permet de se rendre compte des choses qui marchent et qui marchent pas. C'est Sympa!"));    
@@ -42,33 +52,42 @@ export class MainComponent implements OnInit {
         this.categories.push(new Categorie("CatTest7", "Catégorie de test7", "Catégorie de test7, ça permet de se rendre compte des choses qui marchent et qui marchent pas. C'est Sympa!"));
         this.categories.push(new Categorie("CatTest8", "Catégorie de test8", "Catégorie de test8, ça permet de se rendre compte des choses qui marchent et qui marchent pas. C'est Sympa!"));    
         this.categories.push(new Categorie("CatTest9", "Catégorie de test9", "Catégorie de test9, ça permet de se rendre compte des choses qui marchent et qui marchent pas. C'est Sympa!"));
-    
-}
+        
+        this.categories[0].categories=[new Categorie("Sous Catégorie1", "Simple sous catégorie, il n'y a pas grand chose à dire..","Simple sous catégorie, il n'y a pas grand chose à dire mise à part que c'est cool."),new Categorie("Sous Catégorie1", "Simple sous catégorie, il n'y a pas grand chose à dire..","Simple sous catégorie, il n'y a pas grand chose à dire mise à part que c'est cool.")];
 
-    getCategoriesCol1(){
-        let categoriesCol1 : Categorie[] = new Array();
-        for (let i : number = 0; i < this.categories.length; i++) {
-            categoriesCol1.push(this.categories[i]);
-            i = i+2
-        }
-        return categoriesCol1;
+        this.nbCol = 3;
+        this.col = new Array(this.nbCol);
+        this.categorieSelected = false;
+        this.categorieSelectedParent = false;
     }
 
-    getCategoriesCol2(){
-        let categoriesCol2 : Categorie[] = new Array();
-        for (let i : number = 1; i < this.categories.length; i++) {
-            categoriesCol2.push(this.categories[i]);
-            i = i+2
-        }
-        return categoriesCol2;
+    /**
+     * Evenements
+     */
+    changeCategorie(categorie : Categorie){
+        this.categorieSelected = categorie;
+        this.categories = categorie.categories;
     }
 
-    getCategoriesCol3(){
-        let categoriesCol3 : Categorie[] = new Array();
-        for (let i : number = 2; i < this.categories.length; i++) {
-            categoriesCol3.push(this.categories[i]);
-            i = i+2
+    /**
+     * Méthodes
+     */
+
+    hasCategorieSelected() : boolean{
+        if(this.categorieSelected){
+            return false;
         }
-        return categoriesCol3;
+        return true;
     }
+
+
+
+    hasCategories() : boolean {
+        if (this.categories.length>0){
+            return true;
+        }
+        return false;
+    }
+
+
 }
