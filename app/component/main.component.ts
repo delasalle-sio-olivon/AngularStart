@@ -20,48 +20,62 @@ import { Information } from '../model/Information';
 })
 export class MainComponent implements OnInit { 
 
+    /**
+     * Attribut
+     */
     fileDAriane : FileDAriane;
     recherche : Recherche;
+    categorieSelected : Categorie | boolean;
     categories : Categorie[];
-    information : Information[];
-
-    categorieService : CategorieService;
-
-    constructor(categorieService : CategorieService){
-        this.categorieService = categorieService;
-
+    informations : Information[];
+    nbCol : number;
+    col : number[];
+    /**
+     * Constructeur
+     */
+    constructor(){
         this.fileDAriane = new FileDAriane();
         this.recherche = new Recherche();
+        this.categories = new Array();
+        this.informations = new Array();
     }
-
+    /**
+     * Appelé après le Constructeur
+     */
     ngOnInit() {
         this.categories = this.categorieService.getAll();
-}
-
-    getCategoriesCol1(){
-        let categoriesCol1 : Categorie[] = new Array();
-        for (let i : number = 0; i < this.categories.length; i++) {
-            categoriesCol1.push(this.categories[i]);
-            i = i+2
-        }
-        return categoriesCol1;
+        this.nbCol = 3;
+        this.col = new Array(this.nbCol);
+        this.categorieSelected = false;
     }
 
-    getCategoriesCol2(){
-        let categoriesCol2 : Categorie[] = new Array();
-        for (let i : number = 1; i < this.categories.length; i++) {
-            categoriesCol2.push(this.categories[i]);
-            i = i+2
-        }
-        return categoriesCol2;
+    /**
+     * Evenements
+     */
+    changeCategorie(categorie : Categorie){
+        this.categorieSelected = categorie;
+        this.categories = categorie.categories;
     }
 
-    getCategoriesCol3(){
-        let categoriesCol3 : Categorie[] = new Array();
-        for (let i : number = 2; i < this.categories.length; i++) {
-            categoriesCol3.push(this.categories[i]);
-            i = i+2
+    /**
+     * Méthodes
+     */
+
+    hasCategorieSelected() : boolean{
+        if(this.categorieSelected){
+            return false;
         }
-        return categoriesCol3;
+        return true;
     }
+
+
+
+    hasCategories() : boolean {
+        if (this.categories.length>0){
+            return true;
+        }
+        return false;
+    }
+
+
 }
