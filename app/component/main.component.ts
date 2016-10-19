@@ -58,7 +58,6 @@ export class MainComponent implements OnInit {
         this.nbCol = 3;
         this.col = new Array(this.nbCol);
         this.categorieSelected = false;
-        this.categorieSelectedParent = false;
     }
 
     /**
