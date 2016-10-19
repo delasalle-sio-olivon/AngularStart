@@ -1,9 +1,9 @@
 //c'est un module donc on import ça
 import { NgModule }      from '@angular/core';
 
-//on lance une app web donc on import ça
+//on impote les modules que l'on veut
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpModule } from '@angular/http';
 
 /**
  * Les imports de nos components
@@ -21,7 +21,8 @@ import { AsColPipe } from './pipe/asCol.pipe';
 
 
 @NgModule({
-  imports: [ BrowserModule ],
+  imports: [ BrowserModule ,
+             HttpModule],
   declarations: [ AppComponent,
                   MainComponent,
                   BarreComponent,
