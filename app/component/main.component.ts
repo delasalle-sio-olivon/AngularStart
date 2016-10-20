@@ -2,6 +2,7 @@
  * Import angular
  */
 import { Component, OnInit} from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 /**
  * Import model
@@ -40,7 +41,7 @@ export class MainComponent implements OnInit {
     /**
      * Constructeur
      */
-    constructor(private categorieService : CategorieProvider){
+    constructor(private categorieService : CategorieProvider, private router: Router, private route: ActivatedRoute){
         this.fileDAriane = new FileDAriane();
         this.recherche = new Recherche();
         this.categories = new Array();
@@ -62,11 +63,9 @@ export class MainComponent implements OnInit {
     changeCategorie(categorie : Categorie){
         this.categorieSelected = categorie;
         this.categories = this.categorieService.getCategorieEnfants(this.categorieSelected.id);
+        //this.router.navigate(['sale'], { relativeTo: this.route });
     }
 
-    /**
-     * Evenements
-     */
     backToCategorie(categorie : Categorie){
         this.categorieSelected = categorie;
         /**TODO : vue qu'on utilise le file d'ariane on a peut etre déjà l'arborecence donc pas forcement besoin de réupérer via le service */

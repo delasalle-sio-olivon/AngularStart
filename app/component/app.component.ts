@@ -9,7 +9,7 @@ import { ServiceProvider } from '../service/service.provider';
 
 @Component({
     selector: 'my-app',
-    template: '<barre></barre><router-outlet></router-outlet>',
+    template: '<barre></barre><main></main><router-outlet></router-outlet>',
     viewProviders: [Title],
     providers : [ServiceProvider]
 })

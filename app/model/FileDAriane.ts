@@ -13,4 +13,7 @@ export class FileDAriane {
         this.position = new Array<Categorie>();
     }
     
+    clean() : void {
+        this.position = new Array();
+    }
 }

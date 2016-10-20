@@ -4,7 +4,8 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';//pour navigateur
 import { HttpModule } from '@angular/http'
-import { AppRoutingModule } from './app-routing.module';
+import { RouterModule } from '@angular/router';
+import { ROUTES } from './app.routes';
 /**
  * Les imports de nos components
  */
@@ -27,7 +28,7 @@ import { AsColPipe } from './pipe/asCol.pipe';
 @NgModule({
   imports: [ BrowserModule,
              HttpModule,
-             AppRoutingModule],
+             RouterModule.forRoot(ROUTES)],
   declarations: [ AppComponent,
                   MainComponent,
                   BarreComponent,
