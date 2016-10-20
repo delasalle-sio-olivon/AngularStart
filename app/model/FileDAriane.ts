@@ -1,12 +1,16 @@
 /**
+ * Import model
+ */
+import{Categorie} from './Categorie';
+
+/**
  * FileDAriane
  */
 export class FileDAriane {
-    
-    private position : String[];
+    position : Categorie[];
     
     constructor() {
-        
+        this.position = new Array<Categorie>();
     }
     
 }

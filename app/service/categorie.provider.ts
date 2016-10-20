@@ -15,4 +15,8 @@ export class CategorieProvider {
     getFirstCategories() : Categorie[]{
         return this.service.getFirstCategories();
     }
+
+    getCategorieEnfants(id : number) : Categorie[] {
+        return this.service.getCategorieEnfants(id);
+    }
 }

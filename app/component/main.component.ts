@@ -12,11 +12,18 @@ import { Categorie } from '../model/Categorie';
 import { Information } from '../model/Information';
 
 /**
+ * Import providers
+ */
+import { CategorieProvider } from '../service/categorie.provider';
+
+/**
  * Main Component traduit le corps de l'application
  */
 @Component({
     selector: 'main',
-    templateUrl: 'app/view/main.component.html'
+    templateUrl: 'app/view/main.component.html',
+    styles : [".container-fluid{ max-width : 1300px;}"],
+    providers : [CategorieProvider]
 })
 export class MainComponent implements OnInit { 
 
@@ -25,7 +32,7 @@ export class MainComponent implements OnInit {
      */
     fileDAriane : FileDAriane;
     recherche : Recherche;
-    categorieSelected : Categorie | boolean;
+    categorieSelected : Categorie;
     categories : Categorie[];
     informations : Information[];
     nbCol : number;
@@ -33,7 +40,7 @@ export class MainComponent implements OnInit {
     /**
      * Constructeur
      */
-    constructor(){
+    constructor(private categorieService : CategorieProvider){
         this.fileDAriane = new FileDAriane();
         this.recherche = new Recherche();
         this.categories = new Array();
@@ -43,10 +50,10 @@ export class MainComponent implements OnInit {
      * Appelé après le Constructeur
      */
     ngOnInit() {
-        this.categories = this.categorieService.getAll();
+        this.categories = this.categorieService.getFirstCategories();
         this.nbCol = 3;
         this.col = new Array(this.nbCol);
-        this.categorieSelected = false;
+        this.categorieSelected = null;
     }
 
     /**
@@ -54,7 +61,16 @@ export class MainComponent implements OnInit {
      */
     changeCategorie(categorie : Categorie){
         this.categorieSelected = categorie;
-        this.categories = categorie.categories;
+        this.categories = this.categorieService.getCategorieEnfants(this.categorieSelected.id);
+    }
+
+    /**
+     * Evenements
+     */
+    backToCategorie(categorie : Categorie){
+        this.categorieSelected = categorie;
+        /**TODO : vue qu'on utilise le file d'ariane on a peut etre déjà l'arborecence donc pas forcement besoin de réupérer via le service */
+        this.categories = this.categorieService.getCategorieEnfants(this.categorieSelected.id);
     }
 
     /**
@@ -62,7 +78,7 @@ export class MainComponent implements OnInit {
      */
 
     hasCategorieSelected() : boolean{
-        if(this.categorieSelected){
+        if(this.categorieSelected === null){
             return false;
         }
         return true;
