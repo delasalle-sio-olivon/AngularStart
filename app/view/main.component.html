@@ -1,7 +1,8 @@
-<div class="container">
-    <h1 ng-if="hasCategorieSelected()">{{categorieSelected.titre}}</h1>
-    <div *ngFor="let a of this.col; let i = index">
-        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+<div class="container-fluid">
+    <h1 *ngIf="hasCategorieSelected()">{{categorieSelected.titre}}</h1>
+    <file-d-ariane (newCategorieSelected)="backToCategorie($event)" [categorieSelected]="categorieSelected"></file-d-ariane>
+    <div class="row">
+        <div *ngFor="let a of this.col; let i = index" class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
             <categorie *ngFor="let categorie of (this.categories | asCol:3:i)" (categorieSelected)="changeCategorie($event)" [categorie]="categorie"></categorie>
         </div>
     </div>    

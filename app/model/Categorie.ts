@@ -5,10 +5,11 @@ import{Information} from './Information';
 /**
  * Categorie
  */
-export class Categorie implements CategorieComposite {
+export class Categorie{
     id : number;
     idGauche : number;
     idDroite : number;
+    unix : string;
     titre : string;
     resume : string;
     detail : string;

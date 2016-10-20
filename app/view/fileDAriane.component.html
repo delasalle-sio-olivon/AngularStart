@@ -1,0 +1,2 @@
+<div *ngIf="!this.isHome()"><a routerLink="/">Portail</a><a *ngFor="let categorie of this.fileDAriane.position; let i = index" (click)="this.selectCategorie(i)" routerLink="{{ this.makeLink(i) }}"> / {{categorie.titre}}</a></div>
+<div *ngIf="this.isHome()"><a>Portail /</a></div>

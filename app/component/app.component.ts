@@ -4,11 +4,14 @@ import { Component } from '@angular/core';
  * (Title est le seul service fourni par angular, il permet de modifier le titre de la page)
  */
 import { Title } from '@angular/platform-browser';
+import { ServiceProvider } from '../service/service.provider';
+
 
 @Component({
     selector: 'my-app',
-    template: '<barre></barre><main></main>',
-    viewProviders: [Title]
+    template: '<barre></barre><router-outlet></router-outlet>',
+    viewProviders: [Title],
+    providers : [ServiceProvider]
 })
 export class AppComponent { 
     constructor(title: Title) {
