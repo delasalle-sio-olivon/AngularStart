@@ -3,18 +3,19 @@ import { RouterModule } from '@angular/router';
 /**
  * Component imports
  */
-import { RouterComponent }  from './component/router.component';
+import { AppComponent }  from './component/app.component';
 
 @NgModule({
   imports: [
     RouterModule.forRoot([
-        { path: '', component: RouterComponent },
-        { path: ':categorie1', component: RouterComponent },
-        { path: ':categorie1/:categorie2', component: RouterComponent },
-        { path: ':categorie1/:categorie2/:categorie3', component: RouterComponent },
-        { path: ':categorie1/:categorie2/:categorie3/:categorie4', component: RouterComponent },
-        { path: ':categorie1/:categorie2/:categorie3/:categorie4/:categorie5', component: RouterComponent },
-    ])
+        { path: '', redirectTo: '/portail', pathMatch: 'full'},
+        { path: 'portail', component: AppComponent },
+        { path: 'portail/:categorie1/:categorie2/:categorie3/:categorie4/:categorie5', component: AppComponent },
+        { path: 'portail/:categorie1/:categorie2/:categorie3/:categorie4', component: AppComponent },
+        { path: 'portail/:categorie1/:categorie2/:categorie3', component: AppComponent },
+        { path: 'portail/:categorie1/:categorie2', component: AppComponent },
+        { path: 'portail/:categorie1', component: AppComponent }        
+    ], { useHash : true })
   ],
   exports: [
     RouterModule

@@ -3,7 +3,7 @@
  */
 import { Component, OnInit} from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import {  } from 'rxjs/Observable';
 /**
  * Import model
  */
@@ -31,46 +31,77 @@ export class MainComponent implements OnInit {
     /**
      * Attribut
      */
-    fileDAriane : FileDAriane;
+    fileDAriane : string[];
     recherche : Recherche;
     categorieSelected : Categorie;
     categories : Categorie[];
     informations : Information[];
     nbCol : number;
     col : number[];
+    paramsSubscription: any;//any devrait etre de type Subscription mais je le trouves pas
     /**
      * Constructeur
      */
     constructor(private categorieService : CategorieProvider, private router: Router, private route: ActivatedRoute){
-        this.fileDAriane = new FileDAriane();
+        this.fileDAriane = new Array();
         this.recherche = new Recherche();
         this.categories = new Array();
         this.informations = new Array();
     }
     /**
-     * Appelé après le Constructeur
+     * Cycle de vie
      */
     ngOnInit() {
-        this.categories = this.categorieService.getFirstCategories();
+        
         this.nbCol = 3;
         this.col = new Array(this.nbCol);
-        this.categorieSelected = null;
+        this.paramsSubscription = this.route.params.subscribe(params => {
+            let ids : string[] = new Array();
+            
+            /**
+             * Il y a beaucoup de if car les routes sont faites à la main 
+             */
+            if(params['categorie1'] != undefined){
+                ids.push(params['categorie1']);
+                if(params['categorie2'] != undefined){
+                    ids.push(params['categorie2']);
+                    if(params['categorie3'] != undefined){
+                        ids.push(params['categorie3']);
+                        if(params['categorie4'] != undefined){
+                            ids.push(params['categorie4']);
+                            if(params['categorie5'] != undefined){
+                                ids.push(params['categorie5']);
+                            }
+                        }
+                    }
+                }
+                let unix = ids.pop();
+                this.categorieSelected = this.categorieService.getCategorie(unix);
+                this.categories = this.categorieService.getCategorieEnfants(unix);
+                ids.forEach(unixFile => {
+                    this.fileDAriane.push(unixFile);
+                });
+                this.fileDAriane.push(unix);
+            }else{
+                this.categorieSelected = null;
+                this.categories = this.categorieService.getFirstCategories();
+            }
+            
+        });
+        if(this.categorieSelected === undefined){
+            this.categorieSelected = null;
+            this.categories = this.categorieService.getFirstCategories();
+        }
+    }
+
+    ngOnDestroy() {
+        this.paramsSubscription.unsubscribe();
     }
 
     /**
      * Evenements
      */
-    changeCategorie(categorie : Categorie){
-        this.categorieSelected = categorie;
-        this.categories = this.categorieService.getCategorieEnfants(this.categorieSelected.id);
-        //this.router.navigate(['sale'], { relativeTo: this.route });
-    }
 
-    backToCategorie(categorie : Categorie){
-        this.categorieSelected = categorie;
-        /**TODO : vue qu'on utilise le file d'ariane on a peut etre déjà l'arborecence donc pas forcement besoin de réupérer via le service */
-        this.categories = this.categorieService.getCategorieEnfants(this.categorieSelected.id);
-    }
 
     /**
      * Méthodes
@@ -82,9 +113,7 @@ export class MainComponent implements OnInit {
         }
         return true;
     }
-
-
-
+    
     hasCategories() : boolean {
         if (this.categories.length>0){
             return true;

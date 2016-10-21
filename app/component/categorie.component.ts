@@ -18,7 +18,6 @@ import { Utils } from '../service/Utils';
 })
 export class CategorieComponent implements OnInit {
     
-    @Output() categorieSelected = new EventEmitter<Categorie>();
     @Input() categorie: Categorie;
 
     constructor(private router: Router, private route: ActivatedRoute) {
@@ -28,11 +27,11 @@ export class CategorieComponent implements OnInit {
     ngOnInit() { }
 
     selectCategorie(){
-        this.categorieSelected.emit(this.categorie);
-        this.router.navigate([this.categorie.titre], { relativeTo: this.route });
+        this.navigateToThis();
     }
 
-    makeLink(){
-        return Utils.replaceSpaceByUnderscore(this.categorie.titre);
+    navigateToThis() : void{
+        this.router.navigate([Utils.replaceSpaceByUnderscore(this.categorie.unix)], { relativeTo: this.route });
     }
+
 }

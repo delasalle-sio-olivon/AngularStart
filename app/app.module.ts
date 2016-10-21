@@ -35,6 +35,6 @@ import { AsColPipe } from './pipe/asCol.pipe';
                   CategorieComponent,
                   FileDArianeComponent,
                   RouterComponent ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [ RouterComponent ]
 })
 export class AppModule { }

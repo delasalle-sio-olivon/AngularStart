@@ -16,7 +16,11 @@ export class CategorieProvider {
         return this.service.getFirstCategories();
     }
 
-    getCategorieEnfants(id : number) : Categorie[] {
-        return this.service.getCategorieEnfants(id);
+    getCategorieEnfants(unix : string) : Categorie[] {
+        return this.service.getCategorieEnfants(unix);
+    }
+
+    getCategorie(unix : string) : Categorie{
+        return this.service.getCategorie(unix);
     }
 }
