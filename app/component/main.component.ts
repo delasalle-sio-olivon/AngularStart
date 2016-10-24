@@ -23,7 +23,7 @@ import { CategorieProvider } from '../service/categorie.provider';
 @Component({
     selector: 'main',
     templateUrl: 'app/view/main.component.html',
-    styles : [".container-fluid{ max-width : 1300px;}"],
+    styleUrls : ["app/css/main.component.css"],
     providers : [CategorieProvider]
 })
 export class MainComponent implements OnInit { 

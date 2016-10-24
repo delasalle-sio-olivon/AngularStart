@@ -15,7 +15,8 @@ import { CategorieProvider } from '../service/categorie.provider';
 @Component({
     selector: 'file-d-ariane',
     templateUrl: 'app/view/fileDAriane.component.html',
-    providers : [CategorieProvider]
+    providers : [CategorieProvider],
+    styleUrls : ['app/css/fileDAriane.component.css']
 })
 export class FileDArianeComponent implements OnInit {
     fileDArianeObj : FileDAriane;

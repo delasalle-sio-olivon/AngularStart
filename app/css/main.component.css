@@ -1,0 +1,14 @@
+.container-fluid{
+    max-width : 1200px;
+}
+
+.mid{
+    background-color: #24557F;
+    color : white;
+    font-size : 20px;
+    
+    padding-top : 25px; 
+    padding-bottom : 25px; 
+
+    margin-bottom : 25px;
+}

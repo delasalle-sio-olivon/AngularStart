@@ -14,9 +14,17 @@ import { BarreComponent }  from './component/barre.component';
 import { CategorieComponent }  from './component/categorie.component';
 import { FileDArianeComponent }  from './component/fileDAriane.component';
 import { RouterComponent }  from './component/router.component';
+import { SearchComponent }  from './component/search.component';
 
 
-
+/**
+ * Imports de ng2-bootstrap https://valor-software.com/ng2-bootstrap
+ */
+import { DropdownModule, TypeaheadModule } from 'ng2-bootstrap/ng2-bootstrap';
+/**
+ * https://ng-bootstrap.github.io
+ */
+//import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 /**
  * Les imports de nos pipes
  */
@@ -27,14 +35,17 @@ import { AsColPipe } from './pipe/asCol.pipe';
 @NgModule({
   imports: [ BrowserModule,
              HttpModule,
-             AppRoutingModule],
+             AppRoutingModule,
+             DropdownModule,
+             TypeaheadModule ],
   declarations: [ AppComponent,
                   MainComponent,
                   BarreComponent,
                   AsColPipe,
                   CategorieComponent,
                   FileDArianeComponent,
-                  RouterComponent ],
+                  RouterComponent,
+                  SearchComponent ],
   bootstrap: [ RouterComponent ]
 })
 export class AppModule { }
