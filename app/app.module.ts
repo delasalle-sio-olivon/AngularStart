@@ -8,7 +8,6 @@ import { AppRoutingModule } from './app-routing.module';
 /**
  * Les imports de nos components
  */
-import { AppComponent }  from './component/app.component';
 import { MainComponent }  from './component/main.component';
 import { BarreComponent }  from './component/barre.component';
 import { CategorieComponent }  from './component/categorie.component';
@@ -39,8 +38,7 @@ import { AsColPipe } from './pipe/asCol.pipe';
              AppRoutingModule,
              DropdownModule,
              TypeaheadModule ],
-  declarations: [ AppComponent,
-                  MainComponent,
+  declarations: [ MainComponent,
                   BarreComponent,
                   AsColPipe,
                   CategorieComponent,

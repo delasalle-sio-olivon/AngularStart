@@ -17,6 +17,8 @@ import { Information } from '../model/Information';
  */
 import { CategorieProvider } from '../service/categorie.provider';
 import { InformationProvider } from '../service/information.provider';
+import { ServiceProvider } from '../service/service.provider';
+
 /**
  * Main Component traduit le corps de l'application
  */
@@ -24,7 +26,7 @@ import { InformationProvider } from '../service/information.provider';
     selector: 'main',
     templateUrl: 'app/view/main.component.html',
     styleUrls : ["app/css/main.component.css"],
-    providers : [CategorieProvider, InformationProvider]
+    providers : [CategorieProvider, InformationProvider, ServiceProvider]
 })
 export class MainComponent implements OnInit { 
 
