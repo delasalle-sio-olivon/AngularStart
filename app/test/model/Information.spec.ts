@@ -22,4 +22,15 @@ describe('Model Information', () => {
         expect(information.parent).toEqual(categorie);
 
     });
+
+    it('getInArrayByUnix()', () => {
+        let tab : Information[] = new Array();
+        information = new Information("info1", "Titre info", "Résumé info", "Information de test, ça permet de se rendre compte des choses qui marchent et qui marchent pas. C'est Sympa!");
+        tab.push(information);
+        let information2 : Information = new Information("info2", "Titre info", "Résumé info", "Information de test, ça permet de se rendre compte des choses qui marchent et qui marchent pas. C'est Sympa!", categorie);
+        tab.push(information2);
+        expect(Information.getInArrayByUnix(tab,"info2")).toEqual(information2);
+        expect(Information.getInArrayByUnix(tab,"null")).toBeNull();
+
+    });
 });

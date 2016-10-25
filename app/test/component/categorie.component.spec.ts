@@ -1,26 +1,24 @@
+import { TestBed } from '@angular/core/testing';
 
-// import { TestBed } from '@angular/core/testing';
+import { CategorieComponent } from '../../component/categorie.component';
+import { Categorie } from '../../model/Categorie';
 
-// import { PonyComponent } from './pony_cmp';
+describe('Component CategorieComponent', () => {
+    it('should have an image', () => {
+        TestBed.compileComponents();
 
-// describe('PonyComponent', () => {
-//     it('should have an image', () => {
-//         TestBed.configureTestingModule({
-//             declarations: [PonyComponent]
-//         });
-       
-//         const fixture = TestBed.createComponent(PonyComponent);
-       
-//         // given a component instance with a pony input initialized
-//         const ponyComponent = fixture.componentInstance;
-       
-//         ponyComponent.pony = { name: 'Rainbow Dash', color: 'BLUE' };
+        TestBed.configureTestingModule({
+            declarations: [CategorieComponent]
+        });
+        const categorie : Categorie = new Categorie("a","b","c","d");
+        const fixture = TestBed.createComponent(CategorieComponent);
+        const categorieComponent = fixture.componentInstance;
+        categorieComponent.categorie = categorie;
+
+        fixture.detectChanges();
+
         
-//         // when we trigger the change detection
-//         fixture.detectChanges();
-//         // then we should have an image with the correct source attribute
-//         // depending of the pony color
-//         const element = fixture.nativeElement;
-//         expect(element.querySelector('img').getAttribute('src')).toBe('/images/pony-blue.png');
-//     });
-// });
+        const element = fixture.nativeElement;
+        expect(element.querySelector('h3')).toBe(categorie.titre);
+    });
+});

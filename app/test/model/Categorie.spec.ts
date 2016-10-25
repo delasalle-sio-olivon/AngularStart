@@ -5,7 +5,7 @@ import { Information } from '../../model/Information';
 import { TestBed }      from '@angular/core/testing';
 import { By }           from '@angular/platform-browser';
  
-fdescribe('Model Categorie', () => {
+describe('Model Categorie', () => {
     let categorie : Categorie;
  
     beforeEach(() => {
@@ -33,7 +33,12 @@ fdescribe('Model Categorie', () => {
         categorie = new Categorie("souscattest", "Sous catTest", "Sous catégorie de test", "Catégorie de test, ça permet de se rendre compte des choses qui marchent et qui marchent pas. C'est Sympa!", 1,2,3,);
         tab.push(categorie);
         categorie = new Categorie("unixatrouver", "CatTest", "Catégorie de test", "Catégorie de test, ça permet de se rendre compte des choses qui marchent et qui marchent pas. C'est Sympa!", 1,2,3);
+        let categorie2 : Categorie = new Categorie("aussi", "Sous catTest", "Sous catégorie de test", "Catégorie de test, ça permet de se rendre compte des choses qui marchent et qui marchent pas. C'est Sympa!", 1,2,3,);
+        categorie.categories.push(categorie2);
         tab.push(categorie);
         expect(Categorie.getInArrayByUnix(tab,"unixatrouver")).toEqual(categorie);
+        expect(Categorie.getInArrayByUnix(tab,"aussi")).toEqual(categorie2);
+        expect(Categorie.getInArrayByUnix(tab,"null")).toBeNull();
+
     });
 });
