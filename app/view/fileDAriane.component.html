@@ -1,2 +1,2 @@
-<div class="filedariane" *ngIf="!this.isHome()"><a (click)="this.selectCategorie(-1)" >Accueil</a><a *ngFor="let categorie of this.fileDArianeObj.position; let i = index" (click)="this.selectCategorie(i)"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>{{categorie.titre}}</a></div>
+<div class="filedariane" *ngIf="!this.isHome()"><a (click)="this.home()" >Accueil</a><a *ngFor="let composite of this.fileDArianeObj.position; let i = index" (click)="this.selectComposite(i)"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>{{composite.titre}}</a></div>
 <div class="filedariane" *ngIf="this.isHome()"><a>Accueil<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a></div>

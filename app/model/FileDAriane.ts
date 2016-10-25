@@ -1,16 +1,17 @@
 /**
  * Import model
  */
+import{Composite} from './Composite';
 import{Categorie} from './Categorie';
 
 /**
  * FileDAriane
  */
 export class FileDAriane {
-    position : Categorie[];
+    position : Composite[];
     
     constructor() {
-        this.position = new Array<Categorie>();
+        this.position = new Array<Composite>();
     }
     
     clean() : void {

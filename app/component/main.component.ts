@@ -16,7 +16,7 @@ import { Information } from '../model/Information';
  * Import providers
  */
 import { CategorieProvider } from '../service/categorie.provider';
-
+import { InformationProvider } from '../service/information.provider';
 /**
  * Main Component traduit le corps de l'application
  */
@@ -24,7 +24,7 @@ import { CategorieProvider } from '../service/categorie.provider';
     selector: 'main',
     templateUrl: 'app/view/main.component.html',
     styleUrls : ["app/css/main.component.css"],
-    providers : [CategorieProvider]
+    providers : [CategorieProvider, InformationProvider]
 })
 export class MainComponent implements OnInit { 
 
@@ -35,6 +35,7 @@ export class MainComponent implements OnInit {
     recherche : Recherche;
     categorieSelected : Categorie;
     categories : Categorie[];
+    informationSelected : Information;
     informations : Information[];
     nbCol : number;
     col : number[];
@@ -42,7 +43,7 @@ export class MainComponent implements OnInit {
     /**
      * Constructeur
      */
-    constructor(private categorieService : CategorieProvider, private router: Router, private route: ActivatedRoute){
+    constructor(private categorieService : CategorieProvider, private informationService : InformationProvider, private router: Router, private route: ActivatedRoute){
         this.fileDAriane = new Array();
         this.recherche = new Recherche();
         this.categories = new Array();
@@ -77,7 +78,13 @@ export class MainComponent implements OnInit {
                 }
                 let unix = ids.pop();
                 this.categorieSelected = this.categorieService.getCategorie(unix);
-                this.categories = this.categorieService.getCategorieEnfants(unix);
+                if(this.hasCategorieSelected()){
+                    this.categories = this.categorieService.getCategorieEnfants(unix);
+                    this.informations = this.informationService.getInformationsOfCategorie(unix);
+                    this.informationSelected = null;
+                }else{
+                    this.informationSelected = this.informationService.getInformation(unix);
+                }
                 ids.forEach(unixFile => {
                     this.fileDAriane.push(unixFile);
                 });
@@ -91,6 +98,9 @@ export class MainComponent implements OnInit {
         if(this.categorieSelected === undefined){
             this.categorieSelected = null;
             this.categories = this.categorieService.getFirstCategories();
+        }
+        if(this.informationSelected === undefined){
+            this.informationSelected = null;
         }
     }
 
@@ -121,5 +131,18 @@ export class MainComponent implements OnInit {
         return false;
     }
 
+    hasInformationSelected() : boolean{
+        if(this.informationSelected === null){
+            return false;
+        }
+        return true;
+    }
+
+    hasInformations() : boolean {
+        if (this.informations.length>0){
+            return true;
+        }
+        return false;
+    }
 
 }

@@ -1,11 +1,11 @@
-import{CategorieComposite} from './CategorieComposite';
+import{Composite} from './Composite';
 import{Information} from './Information';
 
 
 /**
  * Categorie
  */
-export class Categorie{
+export class Categorie implements Composite{
     id : number;
     idGauche : number;
     idDroite : number;
@@ -31,11 +31,17 @@ export class Categorie{
 
     static getInArrayByUnix(tab : Array<Categorie>, unix : string) : Categorie{
         let catCherche : Categorie = null;
-        tab.forEach(categorie => {
-            if(categorie.unix == unix){  
-                catCherche =  categorie;
+
+        for(let i = 0; i < tab.length; i++){
+            if(tab[i].unix == unix){
+                return tab[i];
+            }else{
+                catCherche = Categorie.getInArrayByUnix(tab[i].categories, unix);
+                if(catCherche !== null){
+                    return catCherche;
+                }
             }
-        });
+        }
         return catCherche;
     }
 }

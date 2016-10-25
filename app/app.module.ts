@@ -12,6 +12,7 @@ import { AppComponent }  from './component/app.component';
 import { MainComponent }  from './component/main.component';
 import { BarreComponent }  from './component/barre.component';
 import { CategorieComponent }  from './component/categorie.component';
+import { InformationComponent }  from './component/information.component';
 import { FileDArianeComponent }  from './component/fileDAriane.component';
 import { RouterComponent }  from './component/router.component';
 import { SearchComponent }  from './component/search.component';
@@ -43,6 +44,7 @@ import { AsColPipe } from './pipe/asCol.pipe';
                   BarreComponent,
                   AsColPipe,
                   CategorieComponent,
+                  InformationComponent,
                   FileDArianeComponent,
                   RouterComponent,
                   SearchComponent ],

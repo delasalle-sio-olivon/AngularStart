@@ -14,7 +14,7 @@ describe('Model Information', () => {
     it('Constructeur', () => {
         categorie = new Categorie("cattest", "CatTest", "Catégorie de test", "Catégorie de test, ça permet de se rendre compte des choses qui marchent et qui marchent pas. C'est Sympa!");
 
-        information = new Information("Titre info", "Résumé info", "Information de test, ça permet de se rendre compte des choses qui marchent et qui marchent pas. C'est Sympa!", categorie);
+        information = new Information("info1", "Titre info", "Résumé info", "Information de test, ça permet de se rendre compte des choses qui marchent et qui marchent pas. C'est Sympa!", categorie);
         expect(information.titre).toBe("Titre info");
         expect(information.resume).toBe("Résumé info");
         expect(information.detail).toBe("Information de test, ça permet de se rendre compte des choses qui marchent et qui marchent pas. C'est Sympa!");

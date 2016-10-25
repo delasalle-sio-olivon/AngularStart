@@ -17,6 +17,11 @@
     width : 100%;
     height : 250px;
 }*/
+.categorie{
+    margin : 5px;
+    margin-bottom : 30px;
+    cursor : pointer;
+}
 .catImg{
     background-image: url(/app/ressource/img/angular.png);
     background-position: center;
