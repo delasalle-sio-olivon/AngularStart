@@ -31,6 +31,7 @@ export class MainComponent implements OnInit {
     /**
      * Attribut
      */
+    //correspond au params de la route
     fileDAriane : string[];
     recherche : Recherche;
     categorieSelected : Categorie;
@@ -50,18 +51,21 @@ export class MainComponent implements OnInit {
         this.informations = new Array();
     }
     /**
-     * Cycle de vie
+     * Cycle de vie (a chaque nouvelle instance cette fonction s'éxecute elle permet d'éviter certain bug du Constructeur)
      */
     ngOnInit() {
-        
+        //le nombre de colonne dans les quels seronts les Categories
         this.nbCol = 3;
+        //le tableau nous permet juste de pourvoir fair une boucle dans la partie vue
         this.col = new Array(this.nbCol);
+
+        //on regarde les params de la route
         this.paramsSubscription = this.route.params.subscribe(params => {
+            //tableau de params
             let ids : string[] = new Array();
-            
-            /**
-             * Il y a beaucoup de if car les routes sont faites à la main 
-             */
+
+            //Il y a beaucoup de if car les routes sont faites à la main 
+            //si le params existe on le push dans le tableau            
             if(params['categorie1'] != undefined){
                 ids.push(params['categorie1']);
                 if(params['categorie2'] != undefined){
@@ -76,25 +80,38 @@ export class MainComponent implements OnInit {
                         }
                     }
                 }
+                //si il y a au moins un params
+
+                //on récupère le dernier qui correspond au composite séléctionné
                 let unix = ids.pop();
+                //on cherche une catégorie via cet unix
                 this.categorieSelected = this.categorieService.getCategorie(unix);
                 if(this.hasCategorieSelected()){
+                    //si elle exite
+                    //on récupère ses enfants
                     this.categories = this.categorieService.getCategorieEnfants(unix);
                     this.informations = this.informationService.getInformationsOfCategorie(unix);
+                    //et on peut affirmer qu'il n'y a pas d'information selectioné
                     this.informationSelected = null;
                 }else{
+                    //sinon c'est une information et donc on la récupère
                     this.informationSelected = this.informationService.getInformation(unix);
                 }
+                //on construit ensuite le fileDAriane
                 ids.forEach(unixFile => {
                     this.fileDAriane.push(unixFile);
                 });
+                //on rajoute le composite séléctionné car on l'a enlevé via le pop()
                 this.fileDAriane.push(unix);
             }else{
+                //si il n'y a pas de params on est donc sans compositeSelectionné et au niveau /portail 
                 this.categorieSelected = null;
+                this.informationSelected = null;
                 this.categories = this.categorieService.getFirstCategories();
             }
             
         });
+        //au cas ou on est un type undefined (!= null)
         if(this.categorieSelected === undefined){
             this.categorieSelected = null;
             this.categories = this.categorieService.getFirstCategories();

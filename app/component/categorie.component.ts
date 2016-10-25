@@ -16,22 +16,15 @@ import { Utils } from '../service/Utils';
     templateUrl: '/app/view/categorie.component.html',
     styleUrls : ['app/css/categorie.component.css']
 })
-export class CategorieComponent implements OnInit {
-    
+export class CategorieComponent {
+    //attribut entrant de main
     @Input() categorie: Categorie;
 
     constructor(private router: Router, private route: ActivatedRoute) {
 
      }
-
-    ngOnInit() { }
-
+    //redirection vers la page de la catégorie
     selectCategorie(){
-        this.navigateToThis();
-    }
-
-    navigateToThis() : void{
         this.router.navigate([Utils.replaceSpaceByUnderscore(this.categorie.unix)], { relativeTo: this.route });
     }
-
 }

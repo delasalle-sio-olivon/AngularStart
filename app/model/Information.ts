@@ -21,7 +21,7 @@ export class Information implements Composite{
         this.id = idP;
         this.parent = categorie;
     }
-
+    //permet de chercher une info dans un tableau d'Information[]
     static getInArrayByUnix(tab : Array<Information>, unix : string) : Information{
         let infoCherche : Information = null;
         for(let i = 0; i < tab.length; i++){

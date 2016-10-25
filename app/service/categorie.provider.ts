@@ -5,7 +5,7 @@ import { ServiceProvider } from './service.provider';
  * Model imports
  */
 import { Categorie } from '../model/Categorie';
-
+//service fournit les Categories
 @Injectable()
 export class CategorieProvider {
     constructor(private service : ServiceProvider) { 

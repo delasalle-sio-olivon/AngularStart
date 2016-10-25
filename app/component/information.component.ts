@@ -16,22 +16,15 @@ import { Utils } from '../service/Utils';
     templateUrl: 'app/view/information.component.html',
     styleUrls : ['app/css/information.component.css']
 })
-export class InformationComponent implements OnInit {
-    
+export class InformationComponent {
+    //attribut entrant de main
     @Input() information: Information;
 
     constructor(private router: Router, private route: ActivatedRoute) {
 
      }
-
-    ngOnInit() { }
-
+     //redirection
     selectInformation(){
-        this.navigateToThis();
-    }
-
-    navigateToThis() : void{
         this.router.navigate([this.information.unix], { relativeTo: this.route });
     }
-
 }

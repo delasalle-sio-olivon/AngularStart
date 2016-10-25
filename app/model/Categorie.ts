@@ -28,7 +28,7 @@ export class Categorie implements Composite{
         this.categories = categories;
         this.informations = informations;
     }
-
+    //permet de chercher une Categorie dans un tableau de Categorie[] (et dans les catégorie enfant aussi )
     static getInArrayByUnix(tab : Array<Categorie>, unix : string) : Categorie{
         let catCherche : Categorie = null;
 

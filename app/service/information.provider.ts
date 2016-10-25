@@ -5,7 +5,7 @@ import { ServiceProvider } from './service.provider';
  * Model imports
  */
 import { Information } from '../model/Information';
-
+//fourni les Information
 @Injectable()
 export class InformationProvider {
     constructor(private service : ServiceProvider) { 

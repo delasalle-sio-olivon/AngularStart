@@ -3,7 +3,9 @@ import { FormControl, FormGroup } from '@angular/forms';
  
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
- 
+ /**
+  * La barre de recherche
+  */
 @Component({
   selector: 'search',
   templateUrl: 'app/view/search.component.html',

@@ -1,5 +1,5 @@
 import { PipeTransform, Pipe } from '@angular/core';
-
+//pipe qui découpe un tableau en x colonne et retourne la colonne désiré
 @Pipe({ name: 'asCol' })
 export class AsColPipe implements PipeTransform {
     transform(value : Array<any>, arg1 : number, arg2 : number ) : Array<any>{

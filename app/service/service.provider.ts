@@ -7,7 +7,7 @@ import { Http } from '@angular/http';
 import { Categorie } from '../model/Categorie';
 import { Information } from '../model/Information';
 
-
+//fourni les données peux les garder en cache
 @Injectable()
 export class ServiceProvider {
 

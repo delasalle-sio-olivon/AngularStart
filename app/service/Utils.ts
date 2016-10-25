@@ -1,3 +1,4 @@
+//classe de fonction utilitaire
 export class Utils {
     
     constructor() { }
