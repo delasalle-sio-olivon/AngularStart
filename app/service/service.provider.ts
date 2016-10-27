@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-
+import { Observable }     from 'rxjs/Observable';
 /**
  * Model imports
  */
@@ -13,9 +13,10 @@ export class ServiceProvider {
 
     jdd : Categorie[];
     infos : Information[];
+    baseUrl : string = "http://localhost:8000";
 
     constructor(private http: Http) { 
-        this.jdd = new Array();
+        /*this.jdd = new Array();
         let cat1 : Categorie = new Categorie("cat1","CatTest1", "Catégorie de test", "Catégorie de test1, ça permet de se rendre compte des choses qui marchent et qui marchent pas. C'est Sympa!",1);
         let cat2 : Categorie = new Categorie("cat2","CatTest2", "Catégorie de test2", "Catégorie de test2, ça permet de se rendre compte des choses qui marchent et qui marchent pas. C'est Sympa!",2);
         let cat3 : Categorie = new Categorie("cat3","CatTes3", "Catégorie de test3", "Catégorie de test3, ça permet de se rendre compte des choses qui marchent et qui marchent pas. C'est Sympa!",3);
@@ -69,13 +70,11 @@ export class ServiceProvider {
         this.jdd.push(new Categorie("cat7","CatTest7", "Catégorie de test7", "Catégorie de test7, ça permet de se rendre compte des choses qui marchent et qui marchent pas. C'est Sympa!",7));
         this.jdd.push(new Categorie("cat8","CatTest8", "Catégorie de test8", "Catégorie de test8, ça permet de se rendre compte des choses qui marchent et qui marchent pas. C'est Sympa!",8));    
         this.jdd.push(new Categorie("cat9","CatTest9", "Catégorie de test9", "Catégorie de test9, ça permet de se rendre compte des choses qui marchent et qui marchent pas. C'est Sympa!",9));
-
+*/
     }
     
-    getFirstCategories() : Categorie[]{
-        
-        return this.jdd;
-
+    getFirstCategories() : Observable<Categorie[]>{
+        return this.http.get(`${this.baseUrl}/api/categories/firstoffirst`).map(res => res.json());
     }
 
     getCategorieEnfants(unix : string) : Categorie[]{

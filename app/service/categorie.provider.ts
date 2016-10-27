@@ -12,8 +12,11 @@ export class CategorieProvider {
 
     }
     
-    getFirstCategories() : Categorie[]{
-        return this.service.getFirstCategories();
+    getFirstCategories() : any{
+        let a = this.service.getFirstCategories().subscribe(response => {
+            console.log(response);
+        // logs the array of races
+        });
     }
 
     getCategorieEnfants(unix : string) : Categorie[] {
