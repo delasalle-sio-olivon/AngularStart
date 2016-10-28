@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ServiceProvider } from './service.provider';
+import { Observable }     from 'rxjs/Observable';
 
 /**
  * Model imports
@@ -12,11 +13,11 @@ export class InformationProvider {
 
     }
 
-    getInformation(unix : string) : Information {
+    getInformation(unix : string) : Observable<Information> {
         return this.service.getInformation(unix);
     }
 
-    getInformationsOfCategorie(unix : string) : Information[]{
+    getInformationsOfCategorie(unix : string) : Observable<Information[]>{
         return this.service.getInformationsOfCategorie(unix);
     }
     

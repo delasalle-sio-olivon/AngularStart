@@ -3,7 +3,7 @@
  *  */
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';//pour navigateur
-import { HttpModule } from '@angular/http'
+import { HttpModule, JsonpModule } from '@angular/http'
 import { AppRoutingModule } from './app-routing.module';
 /**
  * Les imports de nos components
@@ -35,6 +35,7 @@ import { AsColPipe } from './pipe/asCol.pipe';
 @NgModule({
   imports: [ BrowserModule,
              HttpModule,
+             JsonpModule,
              AppRoutingModule,
              DropdownModule,
              TypeaheadModule ],

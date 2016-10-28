@@ -83,44 +83,61 @@ export class MainComponent implements OnInit {
                     }
                 }
                 //si il y a au moins un params
+                this.categorieSelected = null;
+                this.informationSelected = null;
 
                 //on récupère le dernier qui correspond au composite séléctionné
                 let unix = ids.pop();
                 //on cherche une catégorie via cet unix
-                this.categorieSelected = this.categorieService.getCategorie(unix);
-                if(this.hasCategorieSelected()){
-                    //si elle exite
-                    //on récupère ses enfants
-                    this.categories = this.categorieService.getCategorieEnfants(unix);
-                    this.informations = this.informationService.getInformationsOfCategorie(unix);
-                    //et on peut affirmer qu'il n'y a pas d'information selectioné
-                    this.informationSelected = null;
-                }else{
-                    //sinon c'est une information et donc on la récupère
-                    this.informationSelected = this.informationService.getInformation(unix);
-                }
+                this.categorieService.getCategorie(unix).subscribe(res => {
+                    this.categorieSelected = res;
+                    if(this.hasCategorieSelected()){
+                        //si elle exite
+                        //on récupère ses enfants
+                        this.categorieService.getCategorieEnfants(unix).subscribe( res => {
+                            this.categories = res;
+                            if(!this.hasCategories()){
+                                //si il n'y a pas de catégories dans ce cas il y des information normalement
+                                this.informationService.getInformationsOfCategorie(unix).subscribe( res => {
+                                    this.informations = res;
+                                });
+                            }
+                        });
+                        //et on peut affirmer qu'il n'y a pas d'information selectioné
+                        this.informationSelected = null;
+                    }else{
+                        //sinon c'est une information et donc on la récupère
+                        this.informationService.getInformation(unix).subscribe( res => {
+                            this.informationSelected = res;
+                        });
+                    }
+                });
                 //on construit ensuite le fileDAriane
                 ids.forEach(unixFile => {
                     this.fileDAriane.push(unixFile);
                 });
                 //on rajoute le composite séléctionné car on l'a enlevé via le pop()
                 this.fileDAriane.push(unix);
+                
             }else{
                 //si il n'y a pas de params on est donc sans compositeSelectionné et au niveau /portail 
                 this.categorieSelected = null;
                 this.informationSelected = null;
-                this.categories = this.categorieService.getFirstCategories();
+                this.categorieService.getFirstCategories().subscribe( res => {
+                    this.categories = res;
+                });
             }
             
         });
         //au cas ou on est un type undefined (!= null)
-        if(this.categorieSelected === undefined){
+        /*if(this.categorieSelected === undefined){
             this.categorieSelected = null;
-            this.categories = this.categorieService.getFirstCategories();
+            this.categorieService.getFirstCategories();
+            this.categories = this.categorieService.categories;
         }
         if(this.informationSelected === undefined){
             this.informationSelected = null;
-        }
+        }*/
     }
 
     ngOnDestroy() {

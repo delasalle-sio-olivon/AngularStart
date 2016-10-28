@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ServiceProvider } from './service.provider';
+import { Observable }     from 'rxjs/Observable';
 
 /**
  * Model imports
@@ -8,22 +9,22 @@ import { Categorie } from '../model/Categorie';
 //service fournit les Categories
 @Injectable()
 export class CategorieProvider {
-    constructor(private service : ServiceProvider) { 
 
+    categories : Categorie[];
+
+    constructor(private service : ServiceProvider) { 
+        this.categories = new Array();
     }
     
-    getFirstCategories() : any{
-        let a = this.service.getFirstCategories().subscribe(response => {
-            console.log(response);
-        // logs the array of races
-        });
+    getFirstCategories() : Observable<Categorie[]>{ 
+        return this.service.getFirstCategories()
     }
 
-    getCategorieEnfants(unix : string) : Categorie[] {
+    getCategorieEnfants(unix : string) : Observable<Categorie[]> {
         return this.service.getCategorieEnfants(unix);
     }
 
-    getCategorie(unix : string) : Categorie{
+    getCategorie(unix : string) : Observable<Categorie>{
         return this.service.getCategorie(unix);
     }
 }

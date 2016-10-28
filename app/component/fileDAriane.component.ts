@@ -32,14 +32,19 @@ export class FileDArianeComponent implements OnInit {
         //pour chaque param on va chercher la catégorie ou l'information correspondante via l'unix
         this.fileDAriane.forEach(unix => {
             //on cherche en 1er la catégorie
-            let cat : Categorie = this.categorieService.getCategorie(unix);
-            if(cat !== null){
+            this.categorieService.getCategorie(unix).subscribe( res => {
+                let cat : Categorie = res;
+                if(cat !== null){
                 //si ce n'est pas null alors c'est bien une catégorie
                 this.fileDArianeObj.position.push(cat);
-            }else{
-                //sinon c'est une information et dans ce cas là on va la chercher maintenant
-                this.fileDArianeObj.position.push(this.informationService.getInformation(unix));
-            }
+                }else{
+                    //sinon c'est une information et dans ce cas là on va la chercher maintenant
+                    this.informationService.getInformation(unix).subscribe( res => {
+                        this.fileDArianeObj.position.push(res);
+                    });
+                }
+            });
+            
         });
      }
     //Est on à la racine du portail?
