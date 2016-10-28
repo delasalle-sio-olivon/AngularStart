@@ -23,9 +23,10 @@ import { ServiceProvider } from '../service/service.provider';
  * Main Component traduit le corps de l'application
  */
 @Component({
+    moduleId: module.id,  
     selector: 'main',
-    templateUrl: 'app/view/main.component.html',
-    styleUrls : ["app/css/main.component.css"],
+    templateUrl: 'view/main.component.html',
+    styleUrls : ["css/main.component.css"],
     providers : [CategorieProvider, InformationProvider, ServiceProvider]
 })
 export class MainComponent implements OnInit { 

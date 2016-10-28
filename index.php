@@ -13,10 +13,10 @@
     <!-- 2. Configure SystemJS -->
     <script src="../resources/views/front/systemjs.config.js"></script>
     <script>
-      System.import('../resources/views/front/app').catch(function(err){ console.error(err); });
+      System.import('app').catch(function(err){ console.error(err); });
     </script>
     <!-- Base href pour initialiser la route -->
-    <base href="../resources/views/front/">
+    <base href="portail">
   </head>
   <body>
     <router></router>

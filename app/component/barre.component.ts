@@ -3,9 +3,10 @@ import { Component } from '@angular/core';
  * La barre du menu
  */
 @Component({
+    moduleId: module.id,  
     selector: 'barre',
-    templateUrl: 'app/view/barre.component.html',
-    styleUrls : ['app/css/barre.component.css']
+    templateUrl: 'view/barre.component.html',
+    styleUrls : ['css/barre.component.css']
 
 })
 export class BarreComponent {

@@ -5,6 +5,7 @@ import { Title } from '@angular/platform-browser';
  * Le boot s'éffectu ici
  */
 @Component({
+    moduleId: module.id,  
     selector: 'router',
     template: '<barre></barre><router-outlet></router-outlet>',
     viewProviders: [Title],

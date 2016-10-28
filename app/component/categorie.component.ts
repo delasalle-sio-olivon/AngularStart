@@ -12,9 +12,10 @@ import { Categorie } from '../model/Categorie';
 import { Utils } from '../service/Utils';
 
 @Component({
+    moduleId: module.id,  
     selector: 'categorie',
-    templateUrl: '/app/view/categorie.component.html',
-    styleUrls : ['app/css/categorie.component.css']
+    templateUrl: 'view/categorie.component.html',
+    styleUrls : ['css/categorie.component.css']
 })
 export class CategorieComponent {
     //attribut entrant de main

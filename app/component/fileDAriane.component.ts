@@ -14,10 +14,11 @@ import { CategorieProvider } from '../service/categorie.provider';
 import { InformationProvider } from '../service/information.provider';
 
 @Component({
+    moduleId: module.id,  
     selector: 'file-d-ariane',
-    templateUrl: 'app/view/fileDAriane.component.html',
+    templateUrl: 'view/fileDAriane.component.html',
     providers : [CategorieProvider, InformationProvider],
-    styleUrls : ['app/css/fileDAriane.component.css']
+    styleUrls : ['css/fileDAriane.component.css']
 })
 export class FileDArianeComponent implements OnInit {
     fileDArianeObj : FileDAriane;
@@ -33,14 +34,15 @@ export class FileDArianeComponent implements OnInit {
         this.fileDAriane.forEach(unix => {
             //on cherche en 1er la catégorie
             this.categorieService.getCategorie(unix).subscribe( res => {
-                let cat : Categorie = res;
-                if(cat !== null){
+                if(res !== null){
                 //si ce n'est pas null alors c'est bien une catégorie
-                this.fileDArianeObj.position.push(cat);
+                this.fileDArianeObj.position.push(res);
                 }else{
                     //sinon c'est une information et dans ce cas là on va la chercher maintenant
                     this.informationService.getInformation(unix).subscribe( res => {
-                        this.fileDArianeObj.position.push(res);
+                        if(res !== null){
+                            this.fileDArianeObj.position.push(res);
+                        }
                     });
                 }
             });

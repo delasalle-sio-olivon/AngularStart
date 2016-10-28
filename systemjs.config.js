@@ -6,6 +6,7 @@
   System.config({
     paths: {
       // paths serve as alias
+      //CHEMIN A CHANGER
       'npm:': '../resources/views/front/node_modules/'
     },
     // map tells the System loader where to look for things
@@ -27,6 +28,7 @@
       // other libraries
       'rxjs':                      'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
+      //CHEMIN A CHANGER
       'moment': '../resources/views/front/node_modules/moment/moment.js',
       'ng2-bootstrap/ng2-bootstrap': '../resources/views/front/node_modules/ng2-bootstrap/bundles/ng2-bootstrap.umd.js',
       '@ng-bootstrap/ng-bootstrap': '../resources/views/front/node_modules/@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js',

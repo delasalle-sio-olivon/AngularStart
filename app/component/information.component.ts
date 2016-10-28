@@ -12,9 +12,10 @@ import { Information } from '../model/Information';
 import { Utils } from '../service/Utils';
 
 @Component({
+    moduleId: module.id,  
     selector: 'information',
-    templateUrl: 'app/view/information.component.html',
-    styleUrls : ['app/css/information.component.css']
+    templateUrl: 'view/information.component.html',
+    styleUrls : ['css/information.component.css']
 })
 export class InformationComponent {
     //attribut entrant de main

@@ -7,9 +7,10 @@ import 'rxjs/add/observable/of';
   * La barre de recherche
   */
 @Component({
+  moduleId: module.id,  
   selector: 'search',
-  templateUrl: 'app/view/search.component.html',
-  styleUrls: ['app/css/search.component.css']
+  templateUrl: 'view/search.component.html',
+  styleUrls: ['css/search.component.css']
 })
 export class SearchComponent {
   public stateCtrl:FormControl = new FormControl();
