@@ -43,7 +43,9 @@ export class MainComponent implements OnInit {
     informations : Information[];
     nbCol : number;
     col : number[];
-    paramsSubscription: any;//any devrait etre de type Subscription mais je le trouves pas
+    paramsSubscription: any;//any devrait etre de type Subscription
+    //sert a éviter d'afficher des informations incomplete/inéxistante lors de l'init
+    loading : boolean;
     /**
      * Constructeur
      */
@@ -57,6 +59,7 @@ export class MainComponent implements OnInit {
      * Cycle de vie (a chaque nouvelle instance cette fonction s'éxecute elle permet d'éviter certain bug du Constructeur)
      */
     ngOnInit() {
+        this.startLoading();
         //le nombre de colonne dans les quels seronts les Categories
         this.nbCol = 3;
         //le tableau nous permet juste de pourvoir fair une boucle dans la partie vue
@@ -84,9 +87,7 @@ export class MainComponent implements OnInit {
                     }
                 }
                 //si il y a au moins un params
-                this.categorieSelected = null;
-                this.informationSelected = null;
-
+                
                 //on récupère le dernier qui correspond au composite séléctionné
                 let unix = ids.pop();
                 //on cherche une catégorie via cet unix
@@ -101,7 +102,10 @@ export class MainComponent implements OnInit {
                                 //si il n'y a pas de catégories dans ce cas il y des information normalement
                                 this.informationService.getInformationsOfCategorie(unix).subscribe( res => {
                                     this.informations = res;
+                                    this.stopLoading();
                                 });
+                            }else{
+                                this.stopLoading();
                             }
                         });
                         //et on peut affirmer qu'il n'y a pas d'information selectioné
@@ -110,6 +114,7 @@ export class MainComponent implements OnInit {
                         //sinon c'est une information et donc on la récupère
                         this.informationService.getInformation(unix).subscribe( res => {
                             this.informationSelected = res;
+                            this.stopLoading();
                         });
                     }
                 });
@@ -126,19 +131,12 @@ export class MainComponent implements OnInit {
                 this.informationSelected = null;
                 this.categorieService.getFirstCategories().subscribe( res => {
                     this.categories = res;
+                    this.stopLoading();
                 });
             }
             
         });
-        //au cas ou on est un type undefined (!= null)
-        /*if(this.categorieSelected === undefined){
-            this.categorieSelected = null;
-            this.categorieService.getFirstCategories();
-            this.categories = this.categorieService.categories;
-        }
-        if(this.informationSelected === undefined){
-            this.informationSelected = null;
-        }*/
+        
     }
 
     ngOnDestroy() {
@@ -146,21 +144,22 @@ export class MainComponent implements OnInit {
     }
 
     /**
-     * Evenements
-     */
-
-
-    /**
      * Méthodes
      */
 
+    /**
+     * Test si le component a une categorieSelected non null/undefined
+     */
     hasCategorieSelected() : boolean{
-        if(this.categorieSelected === null){
+        if(this.categorieSelected === null || this.categorieSelected === undefined){
             return false;
         }
         return true;
     }
-    
+
+    /**
+     * Test si le composant a des catégories
+     */
     hasCategories() : boolean {
         if (this.categories.length>0){
             return true;
@@ -168,13 +167,19 @@ export class MainComponent implements OnInit {
         return false;
     }
 
+    /**
+     * Test si le component a une informationSelected non null/undefined
+     */
     hasInformationSelected() : boolean{
-        if(this.informationSelected === null){
+        if(this.informationSelected === null || this.informationSelected === undefined){
             return false;
         }
         return true;
     }
 
+    /**
+     * Test si le composant a des informations
+     */
     hasInformations() : boolean {
         if (this.informations.length>0){
             return true;
@@ -182,4 +187,35 @@ export class MainComponent implements OnInit {
         return false;
     }
 
+    /**
+     * Test si on est a la racine du portail ou non
+     */
+    isHome() : boolean{
+        if(!this.hasCategorieSelected() && !this.hasInformationSelected() && !this.isLoading() ){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    /**
+     * Test si on est en train de charger des données
+     */
+    isLoading() : boolean{
+        //si ces 2 données ne sont pas défini alors la page n'en n'est qu'a son charg
+        return this.loading;
+    }
+
+    /**
+     * Notifie le début du chargement
+     */
+    startLoading() : void {
+        this.loading = true;
+    }
+    
+    /**
+     * Notifie la fin du chargement
+     */
+    stopLoading() : void {
+        this.loading = false;
+    }
 }

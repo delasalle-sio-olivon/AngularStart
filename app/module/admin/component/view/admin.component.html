@@ -1,0 +1,19 @@
+<div class="content container-fluid">
+    <div class="row">
+        <div *ngIf="this.sauvegarde.saveEnded" class="alert alert-success" role="alert">Les modifications sont enregistré!</div>
+        <div class="col-md-6">
+            <div class="panel panel-default"*ngIf="this.isReady()">
+                <div class="panel-body">
+                    <tree (categorieSelected)="selectCategorie($event)" (informationSelected)="selectInformation($event)" [data]="sauvegarde.tree"></tree>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <button (click)="newCategorie()" type="button" class="btn btn-primary">Nouvelle catégorie</button>
+            <button (click)="newInformation()" type="button" class="btn btn-primary">Nouvelle information</button>
+            <button (click)="saveChanges()" type="button" class="btn btn-primary">Engregistrer les modifications</button>
+            <categorieEditor (catDelete)="deleteCat()" [categorieSelected]="categorieSelected"></categorieEditor>
+            <informationEditor (infoDelete)="deleteInfo()" [informationSelected]="informationSelected"></informationEditor>
+        </div>
+    </div>
+</div>

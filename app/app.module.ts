@@ -4,7 +4,7 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';//pour navigateur
 import { HttpModule, JsonpModule } from '@angular/http'
-import { AppRoutingModule } from './app-routing.module';
+
 /**
  * Les imports de nos components
  */
@@ -13,40 +13,30 @@ import { BarreComponent }  from './component/barre.component';
 import { CategorieComponent }  from './component/categorie.component';
 import { InformationComponent }  from './component/information.component';
 import { FileDArianeComponent }  from './component/fileDAriane.component';
-import { RouterComponent }  from './component/router.component';
+import { AppComponent }  from './component/app.component';
 import { SearchComponent }  from './component/search.component';
 
-
 /**
- * Imports de ng2-bootstrap https://valor-software.com/ng2-bootstrap
+ * Import des modules du portail
  */
-import { DropdownModule, TypeaheadModule } from 'ng2-bootstrap/ng2-bootstrap';
-/**
- * https://ng-bootstrap.github.io
- */
-//import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-/**
- * Les imports de nos pipes
- */
-import { AsColPipe } from './pipe/asCol.pipe';
-
-
+import { ShareModule }  from './module/share/share.module';
+import { AdminModule }  from './module/admin/admin.module';
+import { AppRoutingModule } from './module/app-routing/app-routing.module';
 
 @NgModule({
   imports: [ BrowserModule,
              HttpModule,
              JsonpModule,
              AppRoutingModule,
-             DropdownModule,
-             TypeaheadModule ],
+             AdminModule,
+             ShareModule ],
   declarations: [ MainComponent,
                   BarreComponent,
-                  AsColPipe,
                   CategorieComponent,
                   InformationComponent,
                   FileDArianeComponent,
-                  RouterComponent,
+                  AppComponent,
                   SearchComponent ],
-  bootstrap: [ RouterComponent ]
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }

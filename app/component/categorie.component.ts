@@ -18,11 +18,16 @@ import { Utils } from '../service/Utils';
     styleUrls : ['css/categorie.component.css']
 })
 export class CategorieComponent {
+    imgStyle : any;
     //attribut entrant de main
     @Input() categorie: Categorie;
 
     constructor(private router: Router, private route: ActivatedRoute) {
 
+     }
+
+     ngOnInit(){
+         this.imgStyle = { "background-image" : "url(../resources/views/front/app/ressource/img/" + "angular.png" + ")" }
      }
     //redirection vers la page de la catégorie
     selectCategorie(){

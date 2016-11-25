@@ -3,12 +3,15 @@ import { RouterModule } from '@angular/router';
 /**
  * Component imports
  */
-import { MainComponent }  from './component/main.component';
+import { AdminComponent } from '../admin/component/admin.component'
+import { MainComponent } from '../../component/main.component'
+
 
 @NgModule({
-  imports: [
+  imports: [ 
     RouterModule.forRoot([
         { path: '', component: MainComponent },
+        { path: 'admin', component: AdminComponent },
         { path: ':categorie1/:categorie2/:categorie3/:categorie4/:categorie5', component: MainComponent },
         { path: ':categorie1/:categorie2/:categorie3/:categorie4', component: MainComponent },
         { path: ':categorie1/:categorie2/:categorie3', component: MainComponent },

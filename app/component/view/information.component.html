@@ -1,6 +1,17 @@
-<div class="panel panel-default information">
-  <div (click)="this.selectInformation()" class="panel-heading"><a>{{this.information.titre}}</a></div>
-  <div class="panel-body">
-    {{this.information.detail}}
+<div>
+  <div class="media">
+    <div class="media-left">
+      <div class="img thumbnail" (click)="this.selectInformation()">
+        <img  class="media-object" [src]="'../resources/views/front/app/ressource/img/' + this.information.unix + '.png'" alt="...">
+      </div>
+    </div>
+    <div class="media-body">
+      <div class="panel panel-default information">
+        <div class="panel-heading"><h3><a (click)="this.selectInformation()">{{this.information.titre}}</a></h3></div>
+        <div class="panel-body">
+          {{this.information.detail}}
+        </div>
+      </div>
+    </div>
   </div>
 </div>

@@ -6,12 +6,13 @@ import { Title } from '@angular/platform-browser';
  */
 @Component({
     moduleId: module.id,  
-    selector: 'router',
+    selector: 'app',
+    //router-outlet est le "Component" qui contient le Component rendu par le module de routing
     template: '<barre></barre><router-outlet></router-outlet>',
     viewProviders: [Title],
 
 })
-export class RouterComponent implements OnInit {
+export class AppComponent implements OnInit {
     constructor(title: Title) {
         title.setTitle('Portail TyForge');
     }

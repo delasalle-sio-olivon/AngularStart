@@ -19,6 +19,6 @@
     <base href="portail">
   </head>
   <body>
-    <router></router>
+    <app></app>
   </body>
 </html>

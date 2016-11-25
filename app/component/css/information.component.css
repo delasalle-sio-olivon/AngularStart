@@ -1,3 +1,27 @@
-.information .panel-heading{
+.information .panel-heading, a{
     cursor: pointer;
+}
+.media-left{
+    padding-bottom: 20px; 
+}
+
+img{
+    height : 100%;
+    max-width: none;
+}
+
+.img{
+    overflow: hidden;
+    width : 100px;
+    height : 95px;
+    margin-bottom: 0;
+}
+
+.information{
+    margin-bottom: 0;
+}
+
+h3{
+    margin : 0;
+    font-size: 20px;
 }

@@ -9,9 +9,13 @@
             <h1>{{informationSelected.titre}}</h1>
             <p class="detail">{{ informationSelected.resume }}</p>
         </div>
-        <div *ngIf="!hasCategorieSelected() && !hasInformationSelected()">
+        <div *ngIf="isHome()">
             <h1>Portail</h1>
             <p class="detail">L'accès au information des SERIA du MEN.</p>
+        </div>
+        <div *ngIf="isLoading()">
+            <h1>  </h1>
+            <p class="detail">   </p>
         </div>
         <file-d-ariane [fileDAriane]="fileDAriane"></file-d-ariane>
     </div>
@@ -29,9 +33,10 @@
 <div *ngIf="hasInformationSelected()" class="content container-fluid">
     {{ this.informationSelected.detail }}
 </div>
-<div class="container-fluid" *ngIf="!hasInformationSelected() && !hasCategorieSelected() && (!hasInformations() && !hasCategories())">
+<div class="container-fluid" *ngIf="!hasInformationSelected() && !hasCategorieSelected() && (!hasInformations() && !hasCategories()) && !isLoading()">
     <div class="alert alert-danger" role="alert">Oups! Cette page n'existe plus.</div>
 </div>
-<div class="container-fluid" *ngIf="!hasInformations() && !hasCategories() && hasCategorieSelected()">
+<div class="container-fluid" *ngIf="!hasInformations() && !hasCategories() && hasCategorieSelected() && !isLoading()">
     <div class="alert alert-warning" role="alert">Oups! Cette page est vide.</div>
 </div>
+<div *ngIf="isLoading()" class="content container-fluid"></div>

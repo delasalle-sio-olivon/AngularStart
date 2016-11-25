@@ -17,30 +17,21 @@
     width : 100%;
     height : 250px;
 }*/
-.categorie{
+.panel{
     margin : 5px;
     margin-bottom : 30px;
     cursor : pointer;
+    height: 100px;
+    overflow: hidden;
 }
-.catImg{
-    /*CHEMIN A CHANGER*/
-    background-image: url(../resources/views/front/app/ressource/img/angular.png);
-    background-position: center;
-    background-size: cover;
+img{
     width : 100%;
-    height : 250px;
-}
-.catImg .caption{
-    color : white;
-    padding-top: 30px;
+    margin : auto auto;
 }
 
-.catImg .caption h3{
-    color : white;
-    font-size: 45px;
+.panel-body{
+    padding : 0px;
 }
-
-.catImg .caption p{
-    color : white;
-    font-size: 18px;
+h3{
+    margin: 5 0;
 }
