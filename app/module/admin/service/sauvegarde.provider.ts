@@ -9,6 +9,8 @@ import { Categorie } from '../../../model/Categorie';
 import { Information } from '../../../model/Information';
 import { Link } from '../../../model/Link';
 
+import { FileUploader } from 'ng2-file-upload';
+
 /**
  * Import service
  */
@@ -57,7 +59,7 @@ export class SauvegardeService {
     infoDeleted : Information[];
     //
     imgsInfo : any[];
-
+    uploaders : FileUploader[];
     constructor(private serviceCategorie : CategorieProvider, private serviceInformation : InformationProvider) {
         this.categoriesToSave = new Array();
         this.informationToSave = new Array();
@@ -70,6 +72,7 @@ export class SauvegardeService {
         this.linksInfoToDel = new Array();
         this.newCatId = -1;
         this.newInfoId = -1000;
+        this.uploaders = Array();
      }
 
     /**
@@ -468,8 +471,6 @@ export class SauvegardeService {
         
         if(this.categoriesToSave.length>0 || this.catDeleted.length>0 || this.infoDeleted.length>0 || this.informationToSave.length>0){
 
-            this.saveInfoImg();
-
             let obs : Observable<any>[] = new Array();
             if(this.categoriesToSave.length>0 || this.catDeleted.length>0){
                 obs.push(this.saveCategories());
@@ -485,9 +486,9 @@ export class SauvegardeService {
                 if(this.linksCatToAdd.length>0 || this.linksCatToDel.length>0 || this.linksInfoToAdd.length>0 || this.linksInfoToDel.length>0){
                     obs2.push(this.saveLinks());
                 }
-                if(this.infoDeleted.length>0 || this.informationToSave.length>0){
-                    obs2.push(this.saveInfoImg());
-                }
+                
+                obs2.push(this.saveInfoImg());
+                
                 if(obs2.length>2){
                     Observable.forkJoin(obs2).subscribe(res=>{
                         this.linksInfoToAdd = new Array();
@@ -496,6 +497,8 @@ export class SauvegardeService {
                         this.linksCatToDel = new Array();
                         this.saveEnd(true);
                     });
+                }else{
+                    this.saveEnd(true);
                 }
             });
         }else{
@@ -504,9 +507,7 @@ export class SauvegardeService {
             if(this.linksCatToAdd.length>0 || this.linksCatToDel.length>0 || this.linksInfoToAdd.length>0 || this.linksInfoToDel.length>0){
                 obs2.push(this.saveLinks());
             }
-            if(this.imgsInfo.length>0 || this.imgsInfo.length>0){
-                obs2.push(this.saveInfoImg());
-            }
+            this.saveInfoImg();
             if(obs2.length>0){
                 Observable.forkJoin(obs2).subscribe(res=>{
                     this.linksInfoToAdd = new Array();
@@ -515,16 +516,15 @@ export class SauvegardeService {
                     this.linksCatToDel = new Array();
                     this.saveEnd(true);
                 });
+            }else{
+                this.saveEnd(true);
             }
         }
         
     }
 
-    saveInfoImg() : Observable<any>{
-        if(this.imgsInfo.length>0){
-            return this.serviceInformation.uploadImgs(this.imgsInfo);
-        }
-        return undefined;
+    saveInfoImg() : void{
+        this.uploaders.forEach(fileUploader=>{fileUploader.uploadAll()});
     }
 
     /**

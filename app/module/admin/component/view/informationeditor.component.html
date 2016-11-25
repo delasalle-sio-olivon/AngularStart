@@ -27,7 +27,7 @@
                     <img [src]="img">
                 </div>
                 <div class="input-group">
-                    <input #input (change)="imgChange(input)" type="file"/>
+                    <input type="file" ng2FileSelect #file (change)="imgChange(file)"  [uploader]="sauvegarde.uploaders[informationSelected.id]" />
                 </div>
                 <div class="input-group">
                     <a class="btn btn-danger" role="button" (click)="this.delete()">Supprimer l'information</a>

@@ -12,6 +12,8 @@ import { SelectModule } from 'ng2-select';
  * https://ng-bootstrap.github.io
  */
 //import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
+import { FileUploadModule } from 'ng2-file-upload';
 /**
  * Les imports de nos pipes
  */
@@ -31,7 +33,8 @@ import { Information } from '../../model/Information';
                AsColPipe,
                SelectModule,
                DropdownModule,
-               TypeaheadModule ],
+               TypeaheadModule,
+               FileUploadModule ],
     declarations: [AsColPipe],
 })
 export class ShareModule { }

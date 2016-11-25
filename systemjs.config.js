@@ -33,6 +33,7 @@
       'ng2-bootstrap/ng2-bootstrap': '../resources/views/front/node_modules/ng2-bootstrap/bundles/ng2-bootstrap.umd.js',
       '@ng-bootstrap/ng-bootstrap': '../resources/views/front/node_modules/@ng-bootstrap/ng-bootstrap/bundles/ng-bootstrap.js',
       'ng2-select': '../resources/views/front/node_modules/ng2-select/ng2-select.js',
+      'ng2-file-upload': '../resources/views/front/node_modules/ng2-file-upload/ng2-file-upload.js',
 
     },
     // packages tells the System loader how to load when no filename and/or no extension

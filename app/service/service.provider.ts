@@ -104,7 +104,7 @@ export class ServiceProvider {
     }
 
     putImgInfo(img : any, id : number){
-        return this.http.put(this.baseUrl + "images/information/{id}", img);
+        return this.http.put(this.baseUrl + "images/informations/"+ id , img);
     }
 
 }

@@ -88,7 +88,6 @@ export class InformationProvider {
     uploadImgs(imgs : any[]) : Observable<any>{
         let obs : Observable<any>[] = new Array();
         imgs.forEach((img,index)=>{
-            console.log(index);
             obs.push(this.service.putImgInfo(img,index));
         });
         return Observable.forkJoin(obs);

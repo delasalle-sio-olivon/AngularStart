@@ -1,6 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
+import { FileUploader } from 'ng2-file-upload';
+
 import { SauvegardeService } from '../service/sauvegarde.provider';
 /**
  * Import model
@@ -24,7 +26,9 @@ export class InformationEditorComponent implements OnInit {
         if(this.informationSelected !== null && this.informationSelected !== undefined ){
             this.oldInformationSelected = new Information(value.unix, value.titre, value.resume, value.detail);
             //on forme l'url de l'img
-            this.img = '../resources/views/front/app/ressource/img/' + this.informationSelected.unix + '.png';
+            this.sauvegarde.uploaders[this.informationSelected.id] = new FileUploader({url: 'http://localhost/lumen/public/api/images/informations/' + this.informationSelected.id });
+            this.img = '../resources/views/front/app/ressource/images/informations/' + this.informationSelected.id + '.png';
+            
         }
     }
 
@@ -32,6 +36,7 @@ export class InformationEditorComponent implements OnInit {
 
     constructor(private sanitizer:DomSanitizer, private sauvegarde : SauvegardeService) { 
         this.infoDelete = new EventEmitter<Information>();
+        
     }
 
     ngOnInit() { }
@@ -145,7 +150,5 @@ export class InformationEditorComponent implements OnInit {
     imgChange(input : any){
         //on utilise le sanitizer pour prévenir que l'url n'est pas dangeureuse
         this.img = this.sanitizer.bypassSecurityTrustUrl(window.URL.createObjectURL(input.files[0]));
-        this.sauvegarde.imgsInfo[this.informationSelected.id] = input.files[0];
-        console.log(input.files[0])
     }
 }
