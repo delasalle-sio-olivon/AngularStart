@@ -4,3 +4,24 @@ nav{
 .nav{
     font-size : 17px;
 }
+
+.navbar{
+    color : white;
+    background-color: #1976D2;
+    border-radius: 0px;
+    box-shadow: rgb(100, 100, 100) 0px 0px 3px 0px;
+    
+}
+
+a{
+    color : white;
+}
+
+a:hover{
+    color : #64FFDA;
+}
+
+.nav>li>a:focus, .nav>li>a:hover{
+    background-color: inherit;
+    color : #64FFDA;
+}

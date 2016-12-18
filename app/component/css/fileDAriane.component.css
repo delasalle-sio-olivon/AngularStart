@@ -1,9 +1,22 @@
 .filedariane{
     font-size: 17;
-    margin-top : 30px;
+    max-width : 1200px;
+    margin : 7 auto;
+    padding : 0 15px;
 }
+
+.container-fluid{
+    background-color: #BBDEFB;
+    width : 100%;
+    box-shadow: rgba(100, 100, 100,0.70) 0px 1px 3px 0px,
+    rgba(100, 100, 100,0.70) 0px 1px 3px 0px inset;
+    margin-right: -1px;
+}
+
 a{
-    color : #94CDFF;
-    cursor : pointer;
+    color : rgba(000,000,000,0.54);
+}
+a:hover{
+    color: #00BFA5;
     text-decoration: none;
 }

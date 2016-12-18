@@ -1,2 +1,4 @@
-<div class="filedariane" *ngIf="!this.isHome()"><a (click)="this.home()" >Accueil</a><a *ngFor="let composite of this.fileDArianeObj.position; let i = index" (click)="this.selectComposite(i)"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>{{composite.titre}}</a></div>
-<div class="filedariane" *ngIf="this.isHome()"><a (click)="this.home()">Accueil<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a></div>
+<div class="container-fluid">
+    <div class="filedariane" *ngIf="!this.isHome()"><a (click)="this.home()" >Accueil</a><a *ngFor="let composite of this.fileDArianeObj.position; let i = index" (click)="this.selectComposite(i)"><span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>{{composite.titre}}</a></div>
+    <div class="filedariane" *ngIf="this.isHome()"><a (click)="this.home()">Accueil<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a></div>
+</div>

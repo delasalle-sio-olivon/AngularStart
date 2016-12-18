@@ -1,24 +1,28 @@
 <div class="mid">
-    <div class="container-fluid">
-        <search></search>
-        <div *ngIf="hasCategorieSelected()">
-            <h1>{{categorieSelected.titre}}</h1>
-            <p class="detail">{{ categorieSelected.detail }}</p>
+    <div class="mid-full">
+        <div class="mid-main">
+            <search></search>
+            <div *ngIf="hasCategorieSelected()">
+                <h1>{{categorieSelected.titre}}</h1><br>
+                <p class="detail">{{ categorieSelected.detail }}</p>
+            </div>
+            <div *ngIf="hasInformationSelected()">
+                <h1>{{informationSelected.titre}}</h1><br>
+                <p class="detail">{{ informationSelected.resume }}</p>
+            </div>
+            <div *ngIf="isHome()">
+                <h1>Portail</h1><br>
+                <p class="detail">L'accès au information des SERIA du MEN.</p>
+            </div>
+            <div *ngIf="isLoading()">
+                <h1>  </h1>
+                <p class="detail">   </p>
+            </div>
         </div>
-        <div *ngIf="hasInformationSelected()">
-            <h1>{{informationSelected.titre}}</h1>
-            <p class="detail">{{ informationSelected.resume }}</p>
-        </div>
-        <div *ngIf="isHome()">
-            <h1>Portail</h1>
-            <p class="detail">L'accès au information des SERIA du MEN.</p>
-        </div>
-        <div *ngIf="isLoading()">
-            <h1>  </h1>
-            <p class="detail">   </p>
-        </div>
-        <file-d-ariane [fileDAriane]="fileDAriane"></file-d-ariane>
     </div>
+    
+    <file-d-ariane [fileDAriane]="fileDAriane"></file-d-ariane>
+    
 </div>
 <div *ngIf="hasCategories()" class="content container-fluid">
     <div class="row">

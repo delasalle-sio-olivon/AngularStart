@@ -1,16 +1,40 @@
 .container-fluid{
     max-width : 1200px;
+    padding-bottom: 10px;
+    
+}
+
+.mid-full{
+    padding : 20px;
+    width : 100%;
+    box-shadow: rgba(100, 100, 100, 0.70) 0px 1px 3px 0px;
+    
+}
+.mid-main{
+    width : 100%;
+    max-width:  1200px;
+
+    margin : 0 auto;
 }
 
 .mid{
-    background-color: #24557F;
-    color : white;
+    background-color: #2196F3;
+    color : rgba(255, 255, 255, 0.70);
     font-size : 20px;
-    
-    padding-top : 25px; 
-    padding-bottom : 25px; 
 
     margin-bottom : 25px;
+}
 
-    min-height: 250px;
+h1{
+    color : white;
+    border-bottom: 3px solid #64FFDA;
+    display: inline;
+    line-height: 60px;
+    padding-right: 30px;
+}
+p{
+    display: inline;
+}
+a:hover{
+    color: #00BFA5;
 }
