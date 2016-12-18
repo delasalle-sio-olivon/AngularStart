@@ -1,5 +1,11 @@
 nav{
     margin-bottom : 0px;
+    position : fixed;
+    width : 100vw;
+    top : 0;
+    left : 0;
+
+    z-index: 10;
 }
 .nav{
     font-size : 17px;

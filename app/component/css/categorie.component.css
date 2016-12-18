@@ -64,7 +64,6 @@ a,h3{
 
     margin-bottom: 24px;
     min-width: 216px;
-    padding-bottom: 48px;
     position: relative;
     -webkit-transition: box-shadow .5s;
     transition: box-shadow .5s;
@@ -82,12 +81,17 @@ a,h3{
     right: 0;
 }
 
-.b a{
+a{
     color: rgba(000,000,000,0.54);
 }
-.b a:hover{
+a:hover{
     color: #00BFA5;
 }
-.a2 h3{
 
+table a{
+    margin-left : 15px;
+}
+
+table{
+    margin-bottom: 0px;
 }

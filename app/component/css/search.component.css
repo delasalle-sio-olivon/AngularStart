@@ -3,3 +3,7 @@
         width : 60%
     }
 }
+
+.input-group .form-control{
+    z-index: unset;
+}
