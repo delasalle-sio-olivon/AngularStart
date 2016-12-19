@@ -27,11 +27,11 @@ nav{
     transition: height 0.5s, margin 0.5s, background 0.5s, line-height 0.5s;
 
     margin-bottom: -50px;
-    background-color: transparent;
+    background-color: #2196F3;
     box-shadow: none;
     border: none;
     z-index: 3;
-    height: 75px;
+    height: 50px;
    
 
 }
@@ -52,7 +52,7 @@ a, .navbar-brand{
 .block-init{
     transition: height 0.5s;
     background-color: #2196F3;
-    height : 75px;
+    height : 50px;
 }
 
 
@@ -85,11 +85,10 @@ a, .navbar-brand{
     background-size: auto 250 ;
 }
 
-@media screen and (max-width: 1740px){
     .logo{
         display: none;
     }
-}
+
 
 .navbar-brand{
     line-height: 20px;

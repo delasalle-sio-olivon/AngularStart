@@ -114,12 +114,12 @@ export class MainComponent implements OnInit {
                                             //si il n'y en a pas on récupère les informations enfants
                                             this.informationService.getInformationsOfCategorie(cat.unix).subscribe(infos=>{
                                                 cat.informations = infos;
-                                                if(cat.informations.length>3){
+                                                if(cat.informations.length>2){
                                                     cat.informations = cat.informations.slice(0,2);
                                                 }
                                             });
 
-                                        }else if(cat.categories.length > 3 ){
+                                        }else if(cat.categories.length > 2 ){
                                             cat.categories = cat.categories.slice(0,2);
                                         }
                                     });
@@ -157,12 +157,12 @@ export class MainComponent implements OnInit {
                                 //si il n'y en a pas on récupère les informations enfants
                                 this.informationService.getInformationsOfCategorie(cat.unix).subscribe(infos=>{
                                     cat.informations = infos;
-                                    if(cat.informations.length>3){
+                                    if(cat.informations.length>2){
                                         cat.informations = cat.informations.slice(0,2);
                                     }
                                 });
 
-                            }else if(cat.categories.length > 3 ){
+                            }else if(cat.categories.length > 2 ){
                                 cat.categories = cat.categories.slice(0,2);
                             }
                         });

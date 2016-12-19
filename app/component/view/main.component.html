@@ -3,20 +3,17 @@
         <div class="mid-main">
             <search></search>
             <div *ngIf="hasCategorieSelected()">
-                <h2 class="light">{{categorieSelected.titre}}</h2><br>
-                <h5 class="detail light">{{ categorieSelected.detail }}</h5>
+                <h4 class="light">{{categorieSelected.titre}}</h4>
+                <h6 class="light">{{categorieSelected.resume}}</h6>
             </div>
             <div *ngIf="hasInformationSelected()">
-                <h2 class="light">{{informationSelected.titre}}</h2><br>
-                <h5 class="light detail">{{ informationSelected.resume }}</h5>
+                <h4 class="light">{{informationSelected.titre}}</h4>
             </div>
             <div *ngIf="isHome()">
-                <h2 class="light">Portail</h2><br>
-                <h5 class="detail light">L'accès au information des SERIA du MEN.</h5>
+                <h4 class="light">Portail</h4>
             </div>
             <div  *ngIf="isLoading()">
-                <h2 class="light">  </h2>
-                <h5 class="detail light">   </h5>
+                <h4 class="light">  </h4>
             </div>
         </div>
     </div>
