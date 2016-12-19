@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
  * Model imports
  */
 import { Categorie } from '../model/Categorie';
+import { Information } from '../model/Information';
 
 /**
  * Providers import
@@ -30,7 +31,15 @@ export class CategorieComponent {
          this.imgStyle = { "background-image" : "url(../resources/views/front/app/ressource/img/" + "angular.png" + ")" }
      }
     //redirection vers la page de la catégorie
-    selectCategorie(){
-        this.router.navigate([Utils.replaceSpaceByUnderscore(this.categorie.unix)], { relativeTo: this.route });
+    selectCategorie(cat : Categorie = this.categorie){
+        if(cat === this.categorie){
+            this.router.navigate([cat.unix], { relativeTo: this.route }); 
+        }else{
+            this.router.navigate([this.categorie.unix,cat.unix], { relativeTo: this.route });
+        }
+    }
+
+    selectInformation(info : Information){
+        this.router.navigate([this.categorie.unix, info.unix], { relativeTo: this.route });
     }
 }

@@ -1,4 +1,6 @@
 nav{
+    transition: height 0.5s, margin 0.5s, background 0.5s;
+
     margin-bottom : 0px;
     position : fixed;
     width : 100vw;
@@ -6,6 +8,8 @@ nav{
     left : 0;
 
     z-index: 10;
+    height: 52px;
+
 }
 .nav{
     font-size : 17px;
@@ -13,8 +17,8 @@ nav{
 
 .navbar{
     color : white;
-    background-color: #1976D2;
     border-radius: 0px;
+    background-color: #1976D2;
     box-shadow: rgb(100, 100, 100) 0px 0px 3px 0px;
     
 }
@@ -30,4 +34,70 @@ a:hover{
 .nav>li>a:focus, .nav>li>a:hover{
     background-color: inherit;
     color : #64FFDA;
+}
+
+.top{
+    transition: height 0.5s, margin 0.5s, background 0.5s, line-height 0.5s;
+
+    margin-bottom: -50px;
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+    z-index: 3;
+    font-size: 30px;
+    height: 75px;
+   
+
+}
+
+.top .navbar-brand{
+    transition : font-size 0.5s, line-height 0.5s;
+    font-size: 25px;
+}
+
+.top a{
+    transition : font-size 0.5s, line-height 0.5s;
+    font-size: 20px;
+    background-color: none;
+    line-height: 70px;
+}
+
+a, .navbar-brand{
+    transition : font-size 0.5s, line-height 0.5s;
+}
+
+.block-init{
+    transition: height 0.5s;
+    background-color: #2196F3;
+    height : 75px;
+}
+
+
+
+.block{
+    width: 100%;
+}
+
+.logo{
+
+    transition: height 0.5s, margin 0.5s, background 0.5s;
+
+    margin-bottom : 0px;
+    position : fixed;
+    width : 100vw;
+    top : 0;
+    left : 0;
+
+    z-index: 10;
+    height: 52px;
+    background-image: url(../resources/views/front/app/ressource/images/logo.png);
+    background-repeat: no-repeat;
+    background-position: 0 42%;
+    background-size : auto 150px;
+
+}
+
+.logoTop{
+    height: 150px;
+    background-size: auto 250 ;
 }

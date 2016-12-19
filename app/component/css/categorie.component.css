@@ -17,6 +17,13 @@
     width : 100%;
     height : 250px;
 }*/
+
+.box{
+    min-height: 171px;
+    min-width: 216px;
+    margin-bottom: 24px;
+}
+
 .panel{
     margin : 5px;
     margin-bottom : 30px;
@@ -64,6 +71,7 @@ a,h3{
 
     margin-bottom: 24px;
     min-width: 216px;
+    
     position: relative;
     -webkit-transition: box-shadow .5s;
     transition: box-shadow .5s;

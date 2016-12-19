@@ -106,6 +106,24 @@ export class MainComponent implements OnInit {
                                 });
                             }else{
                                 this.stopLoading();
+                                //on récupère les catégories enfants de chaque catégories pour faire la petite liste.
+                                this.categories.forEach(cat=>{
+                                    this.categorieService.getCategorieEnfants(cat.unix).subscribe(res=>{
+                                        cat.categories = res;
+                                        if(cat.categories.length<1){
+                                            //si il n'y en a pas on récupère les informations enfants
+                                            this.informationService.getInformationsOfCategorie(cat.unix).subscribe(infos=>{
+                                                cat.informations = infos;
+                                                if(cat.informations.length>3){
+                                                    cat.informations = cat.informations.slice(0,2);
+                                                }
+                                            });
+
+                                        }else if(cat.categories.length > 3 ){
+                                            cat.categories = cat.categories.slice(0,2);
+                                        }
+                                    });
+                                });
                             }
                         });
                         //et on peut affirmer qu'il n'y a pas d'information selectioné
@@ -132,10 +150,29 @@ export class MainComponent implements OnInit {
                 this.categorieService.getFirstCategories().subscribe( res => {
                     this.categories = res;
                     this.stopLoading();
+                    this.categories.forEach(cat=>{
+                        this.categorieService.getCategorieEnfants(cat.unix).subscribe(res=>{
+                            cat.categories = res;
+                            if(cat.categories.length<1){
+                                //si il n'y en a pas on récupère les informations enfants
+                                this.informationService.getInformationsOfCategorie(cat.unix).subscribe(infos=>{
+                                    cat.informations = infos;
+                                    if(cat.informations.length>3){
+                                        cat.informations = cat.informations.slice(0,2);
+                                    }
+                                });
+
+                            }else if(cat.categories.length > 3 ){
+                                cat.categories = cat.categories.slice(0,2);
+                            }
+                        });
+                    });
                 });
             }
             
         });
+
+        
         
     }
 
