@@ -7,13 +7,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">Portail</a>
+        <a class="navbar-brand light title" [class.display1]="navIsTop" href="#">Portail</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true">
         <ul class="nav navbar-nav">
-            <li><a href="#about">Ma page</a></li>
+            <li><a class="light title" [class.headline]="navIsTop" href="#about">Ma page</a></li>
             <li class="dropdown" dropdown>
-                <a dropdownToggle>
+                <a class="light title" [class.headline]="navIsTop" dropdownToggle>
                 Mes projets <span class="caret"></span>
                 </a>
                 <ul dropdownMenu role="menu">
@@ -26,8 +26,8 @@
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Se connecter</a></li>
-            <li><a href="#">S'inscrire</a></li>
+            <li><a class="light title" [class.headline]="navIsTop" href="#">Se connecter</a></li>
+            <li><a class="light title" [class.headline]="navIsTop" href="#">S'inscrire</a></li>
         </ul>
         </div>
     </div>

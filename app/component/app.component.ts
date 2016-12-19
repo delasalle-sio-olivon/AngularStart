@@ -8,7 +8,7 @@ import { Title } from '@angular/platform-browser';
     moduleId: module.id,  
     selector: 'app',
     //router-outlet est le "Component" qui contient le Component rendu par le module de routing
-    template: '<barre></barre><router-outlet></router-outlet>',
+    template: '<barre></barre><router-outlet></router-outlet><pied-de-page></pied-de-page>',
     viewProviders: [Title],
 
 })

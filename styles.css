@@ -1,8 +1,91 @@
+html {
+  height: 100%;
+}
 body{
   margin: 0;
   background-color: rgb(250, 250, 250);
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  position: relative;
 }
 /* everywhere else */
 * { 
-  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; 
+  font-family: 'Roboto', sans-serif;
+  font-size: 13px;
+  line-height: 24px;
+}
+/*  Display 4 */
+.display4 ,h1{
+  font-weight : 300;
+  font-size : 112px;
+  color : rgba(0, 0, 0, 0.54);
+}
+/*  Display 3 */
+.display3, h2{
+  font-size: 56px;
+  color : rgba(0, 0, 0, 0.54);
+}
+/*  Display 2 */
+.display2, h3{
+  font-size : 45px;
+  line-height: 48px;
+  color : rgba(0, 0, 0, 0.54);
+}
+/*  Display 1 */
+.display1, h4{
+  font-size : 34px;
+  line-height: 40px;
+  color : rgba(0, 0, 0, 0.54);
+}
+/*  Headline */
+.headline, h5{
+  font-size : 24px;
+  line-height: 32px;
+  color : rgba(0, 0, 0, 0.87);
+}
+/*  Title */
+.title, h6{
+  font-size : 20px;
+  font-weight: 500;
+  line-height: 28px;
+  color : rgba(0, 0, 0, 0.87);
+}
+/*  Subheading */
+.subheading, em{
+  font-size: 15px;
+  line-height: 24px;
+  color : rgba(0, 0, 0, 0.87);
+  font-style: normal;
+}
+/*  Body 2 */
+.body2, span{
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 24px;
+  color : rgba(0, 0, 0, 0.87);
+}
+/*  Body 1 */
+.body1, p{
+  font-size: 13px;
+  line-height: 20px;
+  color : rgba(0, 0, 0, 0.87);
+}
+
+.caption{
+  color : rgba(0, 0, 0, 0.54);
+  font-size: 12px;
+}
+
+.light{
+  color : white;
+}
+
+.caption.light{
+  color : rgba(255, 255, 255, 0.70);
+}
+
+
+a{
+
 }

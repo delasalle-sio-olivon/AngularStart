@@ -11,29 +11,16 @@ nav{
     height: 52px;
 
 }
-.nav{
-    font-size : 17px;
-}
 
 .navbar{
-    color : white;
     border-radius: 0px;
     background-color: #1976D2;
     box-shadow: rgb(100, 100, 100) 0px 0px 3px 0px;
     
 }
 
-a{
-    color : white;
-}
-
-a:hover{
-    color : #64FFDA;
-}
-
 .nav>li>a:focus, .nav>li>a:hover{
     background-color: inherit;
-    color : #64FFDA;
 }
 
 .top{
@@ -44,7 +31,6 @@ a:hover{
     box-shadow: none;
     border: none;
     z-index: 3;
-    font-size: 30px;
     height: 75px;
    
 
@@ -52,14 +38,11 @@ a:hover{
 
 .top .navbar-brand{
     transition : font-size 0.5s, line-height 0.5s;
-    font-size: 25px;
 }
 
 .top a{
     transition : font-size 0.5s, line-height 0.5s;
-    font-size: 20px;
     background-color: none;
-    line-height: 70px;
 }
 
 a, .navbar-brand{
@@ -84,7 +67,7 @@ a, .navbar-brand{
 
     margin-bottom : 0px;
     position : fixed;
-    width : 100vw;
+    width : 300px;
     top : 0;
     left : 0;
 
@@ -100,4 +83,14 @@ a, .navbar-brand{
 .logoTop{
     height: 150px;
     background-size: auto 250 ;
+}
+
+@media screen and (max-width: 1740px){
+    .logo{
+        display: none;
+    }
+}
+
+.navbar-brand{
+    line-height: 20px;
 }

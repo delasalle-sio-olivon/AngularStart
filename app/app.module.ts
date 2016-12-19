@@ -15,7 +15,7 @@ import { InformationComponent }  from './component/information.component';
 import { FileDArianeComponent }  from './component/fileDAriane.component';
 import { AppComponent }  from './component/app.component';
 import { SearchComponent }  from './component/search.component';
-
+import { PiedDePageComponent }  from './component/piedDePage.component';
 /**
  * Import des modules du portail
  */
@@ -36,7 +36,8 @@ import { AppRoutingModule } from './module/app-routing/app-routing.module';
                   InformationComponent,
                   FileDArianeComponent,
                   AppComponent,
-                  SearchComponent ],
+                  SearchComponent,
+                  PiedDePageComponent ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
