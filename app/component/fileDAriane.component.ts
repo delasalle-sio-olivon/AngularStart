@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 /**
  * Model import
  */
-import { Categorie } from '../model/categorie';
+import { Categorie } from '../model/Categorie';
 import { FileDAriane } from '../model/FileDAriane';
 
 /**

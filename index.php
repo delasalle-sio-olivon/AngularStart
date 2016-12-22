@@ -17,7 +17,7 @@
       System.import('app').catch(function(err){ console.error(err); });
     </script>
     <!-- Base href pour initialiser la route -->
-    <base href="portail">
+    <base href="/">
   </head>
   <body>
     <app></app>

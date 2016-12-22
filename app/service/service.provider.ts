@@ -12,8 +12,8 @@ import { Link } from '../model/Link';
 @Injectable()
 export class ServiceProvider {
 
-    baseUrl : string = "http://localhost/lumen/public/api/";
-
+    baseUrl : string = "http://portail.tyforge-dev.in.ac-rennes.fr/api/";
+    baseUrlTyForge : string = "http://tyforge-dev.in.ac-rennes.fr/plugins/ws/";
     constructor(private http : Http, private jsonp : Jsonp) { 
        
     }
@@ -105,6 +105,18 @@ export class ServiceProvider {
 
     putImgInfo(img : any, id : number){
         return this.http.put(this.baseUrl + "images/informations/"+ id , img);
+    }
+
+    getUserUnixName() : Observable<string>{
+        return this.http.get(this.baseUrl+"user").map(res => res.json()).cache().retry(5);
+    }
+
+    getUserRealName(unix : String) : Observable<string>{
+        return this.http.get(this.baseUrlTyForge+"?0=users&1=" + unix + "&2=name").map(res => res.json()).cache().retry(5);
+    }
+
+    getUserProjects(unix : String) : Observable<any>{
+        return this.http.get(this.baseUrlTyForge+"?0=users&1=" + unix + "&2=projects").map(res => res.json()).cache().retry(5);
     }
 
 }

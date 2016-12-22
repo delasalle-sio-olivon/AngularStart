@@ -11,7 +11,7 @@ import { SauvegardeService } from '../service/sauvegarde.provider';
     moduleId: module.id,
     selector: 'categorieEditor',
     templateUrl: 'view/categorieeditor.component.html',
-    styleUrls : ['css/categorieEditor.component.css']
+    styleUrls : ['css/categorieeditor.component.css']
 })
 export class CategorieEditorComponent implements OnInit {
     new : boolean;
