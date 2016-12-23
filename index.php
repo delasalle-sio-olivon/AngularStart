@@ -17,7 +17,7 @@
       System.import('app').catch(function(err){ console.error(err); });
     </script>
     <!-- Base href pour initialiser la route -->
-    <base href="/">
+    <base href="/lumen/public">
   </head>
   <body>
     <app></app>

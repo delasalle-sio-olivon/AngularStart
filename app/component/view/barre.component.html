@@ -7,17 +7,18 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand light title" [class.display1]="navIsTop" href="#">Portail</a>
+        <a class="navbar-brand light" [class.display1]="navIsTop" [class.title]="!navIsTop" href="#">Portail</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse in" aria-expanded="true">
         <ul class="nav navbar-nav">
-            <li ><a class="light title" [class.headline]="navIsTop" [href]="tyforgeUrl">TyForge</a></li>
-            <li *ngIf="userIsConnected()"><a class="light title" [class.headline]="navIsTop" [href]="accountUrl">Ma page</a></li>
-            <li class="dropdown" dropdown>
-                <a class="light title" [class.headline]="navIsTop" dropdownToggle>
+            <li ><a class="light"  [class.title]="!navIsTop" [class.headline]="navIsTop" [href]="tyforgeUrl">TyForge</a></li>
+            <li *ngIf="userIsConnected()"><a class="light"  [class.title]="!navIsTop"  [class.headline]="navIsTop" [href]="accountUrl">Ma page</a></li>
+            <li><a class="light"  [class.title]="!navIsTop"  [class.headline]="navIsTop" [href]="mediawikiUrl">Mediawiki</a></li>
+            <li *ngIf="!this.userHasProjects()"  class="dropdown" dropdown>
+                <a class="light"  [class.title]="!navIsTop" [class.headline]="navIsTop" dropdownToggle>
                 Mes projets <span class="caret"></span>
                 </a>
-                <ul *ngIf="this.userHasProjects()" dropdownMenu role="menu">
+                <ul dropdownMenu role="menu">
                     <li *ngFor="let item of this.userProjects" role="menuitem"><a class="dropdown-item" [href]="this.HTTP + this.hostTyforge + '/project/?group_id=' + item.id">{{ item.name }}</a></li>
                     
                     
@@ -26,13 +27,13 @@
             </li>
         </ul>
         <ul *ngIf="!userIsConnected()" class="nav navbar-nav navbar-right">
-            <li><a class="light title" [class.headline]="navIsTop" [href]="this.getLoginUrl()">Se connecter</a></li>
-            <li><a class="light title" [class.headline]="navIsTop" [href]="registerUrl">S'inscrire</a></li>
-            <li><a class="light title" [class.headline]="navIsTop" [href]="lostPwUrl">Mot de passe perdu?</a></li>
+            <li><a class="light" [class.subheading]="navIsTop"  [class.body2]="!navIsTop" [href]="this.getLoginUrl()">Se connecter</a></li>
+            <li><a class="light" [class.subheading]="navIsTop"  [class.body2]="!navIsTop" [href]="registerUrl">S'inscrire</a></li>
+            <li><a class="light" [class.subheading]="navIsTop"  [class.body2]="!navIsTop" [href]="lostPwUrl">Mot de passe perdu?</a></li>
         </ul>
         <ul *ngIf="userIsConnected()" class="nav navbar-nav navbar-right">
-            <li><a class="light title" [class.headline]="navIsTop" [href]="logoutUrl">Se déconnecter ({{ userRealName }})</a></li>
-            <li><a class="light title" [class.headline]="navIsTop" [href]="accountUrl">Mon compte</a></li>
+            <li><a class="light" [class.subheading]="navIsTop"  [class.body2]="!navIsTop" [href]="logoutUrl">Se déconnecter ({{ userRealName }})</a></li>
+            <li><a class="light" [class.subheading]="navIsTop"  [class.body2]="!navIsTop" [href]="accountUrl">Mon compte</a></li>
         </ul>
         </div>
     </div>

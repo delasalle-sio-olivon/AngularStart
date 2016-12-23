@@ -12,7 +12,7 @@ import { Link } from '../model/Link';
 @Injectable()
 export class ServiceProvider {
 
-    baseUrl : string = "http://portail.tyforge-dev.in.ac-rennes.fr/api/";
+    baseUrl : string = "http://localhost/lumen/public/api/";
     baseUrlTyForge : string = "http://tyforge-dev.in.ac-rennes.fr/plugins/ws/";
     constructor(private http : Http, private jsonp : Jsonp) { 
        

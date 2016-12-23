@@ -15,6 +15,7 @@ body{
   font-size: 13px;
   line-height: 14px;
 }
+
 /*  Display 4 */
 .display4 ,h1{
   font-weight : 300;
@@ -29,32 +30,32 @@ body{
 /*  Display 2 */
 .display2, h3{
   font-size : 45px;
-  line-height: 45px;
+  line-height: 48px;
   color : rgba(0, 0, 0, 0.54);
 }
 /*  Display 1 */
 .display1, h4{
   font-size : 34px;
-  line-height: 34px;
+  line-height: 40px;
   color : rgba(0, 0, 0, 0.54);
 }
 /*  Headline */
 .headline, h5{
   font-size : 24px;
-  line-height: 24px;
+  line-height: 32px;
   color : rgba(0, 0, 0, 0.87);
 }
 /*  Title */
 .title, h6{
   font-size : 20px;
   font-weight: 500;
-  line-height: 16px;
+  line-height: 28px;
   color : rgba(0, 0, 0, 0.87);
 }
 /*  Subheading */
 .subheading, em{
   font-size: 15px;
-  line-height: 16px;
+  line-height: 24px;
   color : rgba(0, 0, 0, 0.87);
   font-style: normal;
 }
@@ -62,13 +63,13 @@ body{
 .body2, span{
   font-size: 13px;
   font-weight: 500;
-  line-height: 14px;
+  line-height: 24px;
   color : rgba(0, 0, 0, 0.87);
 }
 /*  Body 1 */
-.body1, p{
+.body1, p, a{
   font-size: 13px;
-  line-height: 14px;
+  line-height: 20px;
   color : rgba(0, 0, 0, 0.87);
 }
 
@@ -77,7 +78,7 @@ body{
   font-size: 12px;
 }
 
-.caret, .light{
+.light .caret, .light{
   color : white;
 }
 
@@ -86,6 +87,15 @@ body{
 }
 
 
-a{
-
+a, a:hover, a *, a:hover *{
+  text-decoration: none;
 }
+
+a:hover, a:hover *{
+  color:#00BFA5;
+}
+
+a:hover.light *, a:hover.light{
+  color : #64FFDA;
+}
+

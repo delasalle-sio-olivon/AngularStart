@@ -36,7 +36,9 @@ export class Categorie extends Composite{
     //permet de chercher une Categorie dans un tableau de Categorie[] (et dans les catégorie enfant aussi )
     static getInArrayByUnix(tab : Array<Categorie>, unix : string) : Categorie{
         let catCherche : Categorie = null;
-
+        if(tab === undefined || tab.length<1){
+            return catCherche;
+        }
         for(let i = 0; i < tab.length; i++){
             if(tab[i].unix == unix){
                 return tab[i];
@@ -68,11 +70,14 @@ export class Categorie extends Composite{
     }
 
     static createCategoriesFromRows(rows : any[]){
-        let categories : Array<Categorie> = new Array<Categorie>();
-        rows.forEach(row => {
-            categories.push(new Categorie(row.unix, row.titre, row.resume, row.detail,row.id));
-        });
-        return categories;
+        if (rows instanceof Array) {
+            let categories : Array<Categorie> = new Array<Categorie>();
+            rows.forEach(row => {
+                categories.push(new Categorie(row.unix, row.titre, row.resume, row.detail,row.id));
+            });
+            return categories;
+        }
+        return null;
     }
 
     static filterById(element : Categorie[], id : number) {

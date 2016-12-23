@@ -17,7 +17,6 @@ import { InformationProvider } from '../service/information.provider';
     moduleId: module.id,  
     selector: 'file-d-ariane',
     templateUrl: 'view/fileDAriane.component.html',
-    providers : [CategorieProvider, InformationProvider],
     styleUrls : ['css/fileDAriane.component.css']
 })
 export class FileDArianeComponent implements OnInit {

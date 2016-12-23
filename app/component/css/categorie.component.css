@@ -1,67 +1,12 @@
-/*.categorie{
-    background-image: url(/app/ressource/img/angular.png);
-    height : 200px;
-    background-position: center;
-    background-size: cover;
-    color : white;
-
-    padding : 10px;
-
-    margin-bottom : 20px;
-}
-*/
-/*.catImg{
-    background-image: url(/app/ressource/img/angular.png);
-    background-position: center;
-    background-size: cover;
-    width : 100%;
-    height : 250px;
-}*/
-
 .box{
     min-height: 171px;
     min-width: 216px;
     margin-bottom: 24px;
 }
 
-.panel{
-    margin : 5px;
-    margin-bottom : 30px;
+h6{
     cursor : pointer;
-    height: 100px;
-    overflow: hidden;
-}
-img{
-    width : 100%;
-    margin : auto auto;
-}
-
-.panel-body{
-    padding : 0px;
-}
-h3{
-    /*margin: 5 0;*/
-
-    /**TEST**/
-    font-size: 20px;
-    color: black;
-    font-weight: 400;
-    line-height: 24px;
-    padding: 0 16px 0 16px;
-    text-transform: none;
-}
-p{
-    /**TEST**/
-    color: rgba(000,000,000,0.87);
-    font-size: 13px;
-    line-height: 24px;
-    padding: 0 16px;
-    margin: 0;
-    margin-bottom: 10px;
-}
-a,h3{
-    cursor : pointer;
-    text-decoration: none;
+    margin-left: 15px;
 }
 .a{
     background: #fff;
@@ -87,13 +32,6 @@ a,h3{
     padding: 0 16px;
     position: absolute;
     right: 0;
-}
-
-a{
-    color: rgba(000,000,000,0.54);
-}
-a:hover{
-    color: #00BFA5;
 }
 
 table a{

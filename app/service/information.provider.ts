@@ -7,26 +7,69 @@ import { Link } from '../model/Link';
  * Model imports
  */
 import { Information } from '../model/Information';
+import { Categorie } from '../model/Categorie';
 //fourni les Information
 @Injectable()
 export class InformationProvider {
-    constructor(private service : ServiceProvider) { 
 
+    informations : Information[];
+    enfants : Categorie[];
+    haveAll : Boolean;
+    constructor(private service : ServiceProvider) { 
+        this.informations = new Array();
+        this.enfants = new Array();
+        this.haveAll = false;
+    }
+
+    resetDatas(){
+        this.informations = new Array();
+        this.enfants = new Array();
+        this.haveAll = false;
     }
 
     getInformation(unix : string) : Observable<Information> {
-        return this.service.getInformation(unix);
+        if(this.informations.length>0){
+            let info = Information.getInArrayByUnix(this.informations, unix);
+            if(info !== null){
+                return Observable.of(info);
+            }
+        }
+        let request = this.service.getInformation(unix);
+        request.subscribe(res=>{
+            this.informations.push(res);
+        });
+        return request;
     }
 
     getInformationsOfCategorie(unix : string) : Observable<Information[]>{
-        return this.service.getInformationsOfCategorie(unix);
+        let cat = Categorie.getInArrayByUnix(this.enfants, unix);
+        if(cat !== null){
+            return Observable.of(cat.informations);
+        }
+        let request = this.service.getInformationsOfCategorie(unix);
+        request.subscribe(res=>{
+            let cat = new Categorie(unix, '','','');
+            cat.informations = res;
+            this.enfants.push(cat);
+            this.informations.concat(res);
+        });
+        return request;
     }
     
     getAllInformations() : Observable<Information[]>{
-        return this.service.getInformations();
+        if(this.haveAll){
+            return Observable.of(this.informations);
+        }
+        let request = this.service.getInformations();
+        request.subscribe(res=>{
+            this.informations = res;
+        });
+        this.haveAll = true;
+        return request;
     }
 
     updateInformations(infos : Information[]) : Observable<any>{
+        this.resetDatas();
         let a  = new Array();
         infos.forEach(info=>{
             a.push(this.service.putInformation(info));
@@ -43,6 +86,7 @@ export class InformationProvider {
     }
 
     updateInformationsParentsByUnix(links : any[]) : Observable<any>{
+        this.resetDatas();
         let obs : Observable<any>[] = new Array();
 
         links.forEach(link=>{
@@ -53,6 +97,7 @@ export class InformationProvider {
     }
 
     addInfos(infos : Information[]) : Observable<number[]>{
+        this.resetDatas();
         let obs : Observable<any>[] = new Array();
         
         infos.forEach(info=>{
@@ -62,6 +107,7 @@ export class InformationProvider {
     }
 
     deleteInformations(infos : Information[]){
+        this.resetDatas();
         let obs : Observable<any>[] = new Array(); 
         infos.forEach(info => {
             obs.push(this.service.deleteInformation(info.id));
@@ -70,6 +116,7 @@ export class InformationProvider {
     }
 
     addCategorieEnfants(links : Link[]){
+        this.resetDatas();
         let obs : Observable<any>[] = new Array(); 
         links.forEach(link => {
             obs.push(this.service.postLinkInfo(link));
@@ -78,6 +125,7 @@ export class InformationProvider {
     }
 
     delCategorieEnfants(links : Link[]){
+        this.resetDatas();
         let obs : Observable<any>[] = new Array(); 
         links.forEach(link => {
             obs.push(this.service.deleteLinkInfo(link));

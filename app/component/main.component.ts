@@ -26,8 +26,7 @@ import { UtilsProvider } from '../service/utils.provider';
     moduleId: module.id,  
     selector: 'main',
     templateUrl: 'view/main.component.html',
-    styleUrls : ["css/main.component.css"],
-    providers : [CategorieProvider, InformationProvider, ServiceProvider, UtilsProvider]
+    styleUrls : ["css/main.component.css"]
 })
 export class MainComponent implements OnInit { 
 
@@ -90,52 +89,8 @@ export class MainComponent implements OnInit {
                 
                 //on récupère le dernier qui correspond au composite séléctionné
                 let unix = ids.pop();
-                //on cherche une catégorie via cet unix
-                this.categorieService.getCategorie(unix).subscribe(res => {
-                    this.categorieSelected = res;
-                    if(this.hasCategorieSelected()){
-                        //si elle exite
-                        //on récupère ses enfants
-                        this.categorieService.getCategorieEnfants(unix).subscribe( res => {
-                            this.categories = res;
-                            if(!this.hasCategories()){
-                                //si il n'y a pas de catégories dans ce cas il y des information normalement
-                                this.informationService.getInformationsOfCategorie(unix).subscribe( res => {
-                                    this.informations = res;
-                                    this.stopLoading();
-                                });
-                            }else{
-                                this.stopLoading();
-                                //on récupère les catégories enfants de chaque catégories pour faire la petite liste.
-                                this.categories.forEach(cat=>{
-                                    this.categorieService.getCategorieEnfants(cat.unix).subscribe(res=>{
-                                        cat.categories = res;
-                                        if(cat.categories.length<1){
-                                            //si il n'y en a pas on récupère les informations enfants
-                                            this.informationService.getInformationsOfCategorie(cat.unix).subscribe(infos=>{
-                                                cat.informations = infos;
-                                                if(cat.informations.length>2){
-                                                    cat.informations = cat.informations.slice(0,2);
-                                                }
-                                            });
-
-                                        }else if(cat.categories.length > 2 ){
-                                            cat.categories = cat.categories.slice(0,2);
-                                        }
-                                    });
-                                });
-                            }
-                        });
-                        //et on peut affirmer qu'il n'y a pas d'information selectioné
-                        this.informationSelected = null;
-                    }else{
-                        //sinon c'est une information et donc on la récupère
-                        this.informationService.getInformation(unix).subscribe( res => {
-                            this.informationSelected = res;
-                            this.stopLoading();
-                        });
-                    }
-                });
+                this.getSelected(unix);
+                
                 //on construit ensuite le fileDAriane
                 ids.forEach(unixFile => {
                     this.fileDAriane.push(unixFile);
@@ -147,27 +102,7 @@ export class MainComponent implements OnInit {
                 //si il n'y a pas de params on est donc sans compositeSelectionné et au niveau /portail 
                 this.categorieSelected = null;
                 this.informationSelected = null;
-                this.categorieService.getFirstCategories().subscribe( res => {
-                    this.categories = res;
-                    this.stopLoading();
-                    this.categories.forEach(cat=>{
-                        this.categorieService.getCategorieEnfants(cat.unix).subscribe(res=>{
-                            cat.categories = res;
-                            if(cat.categories.length<1){
-                                //si il n'y en a pas on récupère les informations enfants
-                                this.informationService.getInformationsOfCategorie(cat.unix).subscribe(infos=>{
-                                    cat.informations = infos;
-                                    if(cat.informations.length>2){
-                                        cat.informations = cat.informations.slice(0,2);
-                                    }
-                                });
-
-                            }else if(cat.categories.length > 2 ){
-                                cat.categories = cat.categories.slice(0,2);
-                            }
-                        });
-                    });
-                });
+                this.getFirstOfFirst();
             }
             
         });
@@ -254,5 +189,90 @@ export class MainComponent implements OnInit {
      */
     stopLoading() : void {
         this.loading = false;
+    }
+    /**
+     * Récupère la catégorie selectioné
+     */
+    getSelected(unix : string) : void{
+        //on cherche une catégorie via cet unix
+        this.categorieService.getCategorie(unix).subscribe(res => {
+            this.categorieSelected = res;
+            if(this.hasCategorieSelected()){
+                //si elle exite
+                //on récupère ses enfants
+                this.getEnfantCategorieSelected(unix);
+                //et on peut affirmer qu'il n'y a pas d'information selectioné
+                this.informationSelected = null;
+            }else{
+                //sinon c'est une information et donc on la récupère
+                this.informationService.getInformation(unix).subscribe( res => {
+                    this.informationSelected = res;
+                    this.stopLoading();
+                });
+            }
+        });
+    }
+    /**
+     * Recupère les enfants de la catégorie selectioné
+     */
+    getEnfantCategorieSelected(unix : string) : void{
+        this.categorieService.getCategorieEnfants(unix).subscribe( res => {
+            this.categories = res;
+            if(!this.hasCategories()){
+                //si il n'y a pas de catégories dans ce cas il y des information normalement
+                this.getInformationsEnfantCategorieSelected(unix);
+            }else{
+                this.stopLoading();
+                //on récupère les catégories enfants de chaque catégories pour faire la petite liste.
+                this.getEnfantCategories();
+            }
+        });
+    }
+    /**
+     * Récupère les informations enfants de la catégorie selectioné
+     */
+    getInformationsEnfantCategorieSelected(unix : string){
+        this.informationService.getInformationsOfCategorie(unix).subscribe( res => {
+            this.informations = res;
+            this.stopLoading();
+        });
+    }
+    /**
+     * Récupère les enfants de chaque catégories enfants de la catégorie selectioné
+     */
+    getEnfantCategories(){
+        this.categories.forEach(cat=>{
+            this.categorieService.getCategorieEnfants(cat.unix).subscribe(res=>{
+                cat.categories = res;
+                if(cat.categories.length<1){
+                    //si il n'y en a pas on récupère les informations enfants
+                    this.getInformationEnfantCategories(cat);
+
+                }else if(cat.categories.length > 2 ){
+                    cat.categories = cat.categories.slice(0,2);
+                }
+            });
+        });
+    }
+    /**
+     * Recupère les informations enfants de chaque catégories enfant de la catégorie selectioné
+     */
+    getInformationEnfantCategories(cat : Categorie){
+        this.informationService.getInformationsOfCategorie(cat.unix).subscribe(infos=>{
+            cat.informations = infos;
+            if(cat.informations.length>2){
+                cat.informations = cat.informations.slice(0,2);
+            }
+        });
+    }
+    /**
+     * Aucune catégorie n'est séléctionné on séléctionne alors la catégorie firstoffirst (la base de l'arbre)
+     */
+    getFirstOfFirst(){
+        this.categorieService.getFirstCategories().subscribe( res => {
+            this.categories = res;
+            this.stopLoading();
+            this.getEnfantCategories();
+        });
     }
 }
